@@ -151,7 +151,7 @@ class GameView {
     // this.renderer.bind(this)
 
     //resize & align
-    console.log("this is:", this)
+    // console.log("this is:", this)
 		this.sceneHeight = window.innerHeight;
 		this.sceneWidth = window.innerWidth;
 		this.renderer.setSize(this.sceneWidth, this.sceneHeight);

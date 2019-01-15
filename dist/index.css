@@ -1,0 +1,144 @@
+body {
+	/* cursor: pointer;
+  cursor: url('MFsight99.png') 2 2, pointer;
+  z-index: 1; */
+}
+
+#splash {
+  background-color: white;
+  background-image: url('./sleeping_desk.jpg');
+  background-size: cover;
+  position: absolute;
+  z-index: 150;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+#splash h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: lighter;
+  font-size: 60px;
+}
+#instructions_text{
+  font-family: 'Orbitron', sans-serif;
+
+}
+
+#splash h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: lighter;
+  font-size: 20px;
+  
+  color: #1a8a04;
+  text-align: center;
+  /* padding-bottom: 45px; */
+}
+
+#play_btn {
+  position: relative;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: lighter;
+  font-size: 40px;
+  background-color: black;
+  width: auto;
+  padding-left: 40px;
+  padding-right: 40px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  color: #1a8a04;
+  border: 2px solid black;
+}
+
+.user_info {
+  /* position: absolute; */
+  /* display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-start;
+  z-index: 150;
+  bottom: 0%;
+  left: 0%; */
+}
+
+#damage {
+  /* font-size: 20px;
+  z-index: 10;
+  font-family: 'Orbitron', sans-serif;
+  color: white;
+  margin-left: 50px;
+  font-weight: lighter; */
+}
+
+#music {
+  /* font-size: 20px;
+  z-index: 10;
+  font-family: 'Orbitron', sans-serif;
+  color: white;
+  margin-left: 50px;
+  margin-top: 100px;
+  font-weight: lighter;
+  padding-top: 50px; */
+}
+
+h1 #music{
+  /* padding-top: 100px; */
+}
+
+#score {
+  /* font-size: 20px;
+  z-index: 10;
+  font-family: 'Orbitron', sans-serif;
+  color: white;
+  font-weight: lighter;
+  margin-left: 10px; */
+}
+
+/* canvas{
+    position: relative;
+    z-index: 1;
+} */
+
+.screen {
+  /* position: relative;
+  display: inline-block; */
+}
+
+#splash-effect{
+  background-color: black;
+  z-index: 200;
+  width: 100%;
+  height: 100%;
+  animation-name: lightning;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+
+}
+
+
+
+@keyframes lightning {
+  0%   {background-color: black; }
+  50%  {background-color: black; }
+  51%  {background-color: transparent; }
+  53%  {background-color: transparent; }
+  54%  {background-color: black; }
+  60%  {background-color: black; }
+  61%  {background-color: transparent; }
+  62%  {background-color: black; }
+  63%  {background-color: transparent; }
+  64%  {background-color: black; }
+  64%  {background-color: transparent; }
+  100% {background-color: black; }   
+}
+
+
+
+/* animation- splash effect is a black div.. we want to make it invisable and revisible in a lightning animation effect */
+/* we also want a lightning sound */

@@ -98,7 +98,7 @@ const Items = require('./items');
   exports.createBugsPool = (bugPool = []) => {
     // console.log("making bug pool")
     this.bugPool = bugPool
-    let maxBugsInPool=50;
+    let maxBugsInPool=100;
     let newBug;
     
     for(let i=0; i<maxBugsInPool;i++){

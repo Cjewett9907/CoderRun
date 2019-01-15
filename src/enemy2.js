@@ -1,11 +1,13 @@
 const t = require('three');
 const GameView = require('./game_view');
-const Items = require('./items');
+const Item = require('./items');
 
 class Enemy{
     constructor(){
         this.bugsInPath = []
         this.bugPool =[]
+        this.items = new Item();
+        this.spawnTimer = new t.Clock().start();
        
 
     }
@@ -32,17 +34,19 @@ class Enemy{
 
         // console.log("MAKING PATH BUG")
         // console.log(this.bugPool)
-
       if(this.bugPool.length === 0)return;
         this.newBug = this.bugPool.pop();
         this.newBug.visible = true;
         this.bugsInPath.push(this.newBug);
      
+        if(Math.random()>0.5){
         // This handles the starting position of objects relative to the spinning world
         sphericalHelper.set( worldRadius+1, pathAngleValues[row], -this.currentGround.rotation.x+4 );
-
+        }else {
         //// This is for Flying Bugs
-        // sphericalHelper.set( worldRadius+2, pathAngleValues[row], -this.currentGround.rotation.x+4 );
+        
+        sphericalHelper.set( worldRadius+2, pathAngleValues[row], -this.currentGround.rotation.x+4 );
+        }
       }else {
         this.newBug = this.createBug();
         let swarmAreaAngle=0;//[1.52,1.57,1.62];
@@ -71,26 +75,57 @@ class Enemy{
     this.currentGround = ground
     let options=[0,1,2];
 
-    // console.log(this.currentGround)
-
-    let lane= Math.floor(Math.random()*3);
-    this.addBug(true, lane, false, ground, recievedBugPool);
-    options.splice(lane,1);
     
-    if(Math.random()>0.5){
-      // Add difficulty here!
-      let lane1= Math.floor(Math.random()*2);
-      this.addBug(true, lane1, false, ground, recievedBugPool);
-      let lane2= Math.floor(Math.random()*2);
-      this.addBug(true, lane2, false, ground, recievedBugPool);
-      let lane3= Math.floor(Math.random()*2);
-      this.addBug(true, lane3, false, ground, recievedBugPool);
+    // console.log('recieved bugpool addpath', this.bugPool)
+    if(Math.random()<0.05){
+      let lane10= Math.floor(Math.random()*2);
+      this.items.addItem(lane10, this.currentGround);
+      this.items.createItem();
+    }else{
+      
+      if(this.spawnTimer > 15){
+      this.addBug(true, 0, false, ground, this.bugPool);
+      options.splice(0,1);
+      this.addBug(true, 1, false, ground, this.bugPool);
+      options.splice(1,1);
+      this.addBug(true, 2, false, ground, this.bugPool);
+      options.splice(2,1);
+      } 
+    
+
+      if(Math.random()>0.2){
+        // Add difficulty here!
+        let lane1= Math.floor(Math.random()*3);
+        this.addBug(true, lane1, false, ground, this.bugPool);
+        let lane2= Math.floor(Math.random()*3);
+        this.addBug(true, lane2, false, ground, this.bugPool);
+        // let lane3= Math.floor(Math.random()*3);
+        // this.addBug(true, lane3, false, ground, this.bugPool);
+      }
+      if(Math.random()>0.5){
+        // Add difficulty here!
+        let lane4= Math.floor(Math.random()*3);
+        this.addBug(true, lane4, false, ground, this.bugPool);
+        let lane5= Math.floor(Math.random()*3);
+        this.addBug(true, lane5, false, ground, this.bugPool);
+        let lane6= Math.floor(Math.random()*3);
+        this.addBug(true, lane6, false, ground, this.bugPool);
+        // let lane7= Math.floor(Math.random()*3);
+        // this.addBug(true, lane7, false, ground, this.bugPool);
+      }
+
     }
 
+
+
+
     // if(Math.random()<0.05){
-    //   // let lane5= Math.floor(Math.random()*2);
-    //   // Items.addItem(lane5);
-    // }
+    //   let lane10= Math.floor(Math.random()*2);
+    //   this.items.addItem(lane10, this.currentGround);
+    //   this.items.createItem();
+      
+    //   console.log('current ground', this.currentGround)
+    // }a
   }
 
   createBug(){
@@ -111,7 +146,7 @@ class Enemy{
 
   createBugsPool(){
     // console.log("making bug pool")
-    let maxBugsInPool=50;
+    let maxBugsInPool=100;
     let newBug;
     
     for(let i=0; i<maxBugsInPool;i++){

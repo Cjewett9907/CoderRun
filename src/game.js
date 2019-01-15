@@ -1,19 +1,21 @@
 // const BugManager = require('./bug_manager')
-const t = require('three')
-const World = require('./world')
-const GameView = require('./game_view')
-const Collision = require('./collision')
-const keyboardHandler = require('./keyboard_handler')
+const t = require('three');
+const World = require('./world');
+const GameView = require('./game_view');
+const Collision = require('./collision');
+const keyboardHandler = require('./keyboard_handler');
 // const Enemy = require('./enemy')
-const Enemy2 = require('./enemy2')
-const Effects = require('./special_effects')
+const Enemy2 = require('./enemy2');
+const Effects = require('./special_effects');
+const Item = require('./items');
+const Sound = require('./sounds');
 
 
 class Game {
 
 	constructor(){
 		this.bounceValue = 0 
-		this.gravity = 0.01; 
+		this.gravity = 0.012; 
 		this.score = 0;    
 		this.notHitTime = new t.Clock();
 		this.sphericalHelper = new t.Spherical();
@@ -32,7 +34,14 @@ class Game {
 		this.lastBugReleaseTime=0;
     this.enemy = new Enemy2();
     this.effects = new Effects();
-    this.doublejump = 1;
+    this.item = new Item();
+    this.doubleJump = 2;
+    this.col.timeshit = 0;
+    this.col.mercy = false;
+    this.boostable = false;
+    this.canDoubleJump = false;
+    this.soundOn = false
+
     // console.log(this)
 	}
 
@@ -46,6 +55,7 @@ class Game {
     this.gameView.createScene(this.effects);
     this.enemy.addWorldBugs(this.gameView.rollingGroundSphere);
     this.enemy.createBugsPool();
+    // this.item.createItem();
     this.gameView.render();
   //   this.bindKeyHandlers();
   //   this.lastTime = 0;
@@ -54,6 +64,43 @@ class Game {
     this.update();
   }
 
+  gameOver(){
+    // cancelAnimationFrame( this.update);
+    // clearInterval(this.update);
+    document.getElementById('splash').style.visibility = 'visible';  
+    document.getElementById('instructions').innerHTML = '';
+    // document.getElementById('title_text').innerHTML = 'You stayed awake Xnum seconds...'; (Math.floor(Math.floor(this.gameView.gameTime.getElapsedTime()))
+    document.getElementById('play_btn_text').innerHTML = 'Try Again?';   
+  }
+  
+  isMusicPlaying() {
+    if (this.soundOn) {
+      return 'on';
+    } else {
+      return 'off';
+    }
+  }
+
+
+  playSounds() {
+    this.handleMusic();
+    
+  }
+
+  handleMusic() {
+    this.music = new Sound('./sounds/srcxxxx');
+    document.getElementById('music').addEventListener('click', () => {
+      if (this.soundOn) {
+        this.soundOn = false;
+        this.music.stop();
+      } else {
+        this.soundOn = true;
+        this.music.start(this);
+      }
+    }, false);
+  }
+
+
 
 
 	update(){
@@ -61,51 +108,82 @@ class Game {
     this.bounceValue-=this.gravity; 
     if((this.gameView.heroSprite.position.y - 0.3) <= (this.gameView.heroGroundedY )){
       this.jumping=false;
-      this.bounceValue=(Math.random()*0.005)+0.01; 
+      this.bounceValue=(Math.random()*0.005)+0.012; 
     } 
-    if (!this.jumping) { 
-        if ( this.keypress.jump ) {//up, jump
+    // if 
+    // (!this.jumping || this.canDoubleJump) 
+        // (true){ 
+        if ( this.keypress.jump && !this.jumping ) {//up, jump
+          
           this.keypress.jump = false
-					this.bounceValue=0.2;
-					this.jumping=true;
+          this.bounceValue=0.2;
+          // this.gameView.heroSprite.position.y += this.bounceValue;
+          this.jumping=true;
+          
+          // if (this.canDoubleJump && this.doubleJump > 0){
+          //   console.log("can double")
+          //   this.keypress.jump = false
+          //   this.bounceValue=0.2;
+          //   this.canDoubleJump = false
+          // }
         }
-        else if ( this.keypress.right) {//right
-				if(this.gameView.currentLane == this.gameView.middleLane){
-          this.gameView.currentLane=this.gameView.rightLane;
-          this.keypress.right = false;
-				}else if(this.gameView.currentLane==this.gameView.leftLane){
-          this.gameView.currentLane=this.gameView.middleLane;
-          this.keypress.right = false;
-				}else{
-          this.validMove=false;
-          this.keypress.right = false;	
-				}
-			} else if ( this.keypress.left) {//left
-				if (this.gameView.currentLane==this.gameView.middleLane){
-          this.gameView.currentLane=this.gameView.leftLane;
-          this.keypress.left = false;
-				}else if(this.gameView.currentLane==this.gameView.rightLane){
-          this.gameView.currentLane=this.gameView.middleLane;
-          this.keypress.left = false;
-				}else{
-          this.validMove=false;	
-          this.keypress.left = false;
-				}
 
-			} else if (this.keypress.attack) {// spacebar pause
-				if (this.paused) {
-					this.paused = false
-				} else if (!this.paused) {
-					this.paused = true
-				}
-			}
-    } else {
+        if (this.keypress.jump && this.jumping && this.canDoubleJump){
+          this.keypress.jump = false
+          this.bounceValue=0.2;
+          // this.gameView.heroSprite.position.y += this.bounceValue;
+          this.jumping=true;
+          this.canDoubleJump === false
+        }
+      
+
+        // else if (this.jumping && this.doubleJump) { 
+        //   if ( this.keypress.jump ) {//up, jump
+        //     this.doublejump = false
+        //     console.log("is double")
+        //     this.bounceValue=0.1;
+        //     this.jumping=true;
+        //   }
+        // }
+
+        if ( this.keypress.right) {//right
+				  if(this.gameView.currentLane == this.gameView.middleLane){
+            this.gameView.currentLane=this.gameView.rightLane;
+            this.keypress.right = false;
+				  }else if(this.gameView.currentLane==this.gameView.leftLane){
+            this.gameView.currentLane=this.gameView.middleLane;
+            this.keypress.right = false;
+				  }else{
+            this.validMove=false;
+            this.keypress.right = false;	
+          }
+        }
+
+			 if ( this.keypress.left) {//left
+          if (this.gameView.currentLane==this.gameView.middleLane){
+            this.gameView.currentLane=this.gameView.leftLane;
+            this.keypress.left = false;
+          }else if(this.gameView.currentLane==this.gameView.rightLane){
+            this.gameView.currentLane=this.gameView.middleLane;
+            this.keypress.left = false;
+          }else{
+            this.validMove=false;	
+            this.keypress.left = false;
+          }
+        }
+
+			 if (this.keypress.attack) {// spacebar pause
+          if (this.paused) {
+            this.paused = false
+          } else if (!this.paused) {
+            this.paused = true
+          }
+		  	}
+      
       this.keypress.jump = false
       this.keypress.right = false
       this.keypress.left = false
       this.keypress.attack = false
-      
-    }
 
     this.delta = this.gameView.clock.getDelta(); 
     this.gameView.annie.update(1000 * this.delta);
@@ -113,46 +191,55 @@ class Game {
       // this.gameView.scene.fog.density += 0.0001
 
       if (this.col.hasCollided){
-
-        this.gameView.scene.fog.density += 0.006
+        this.col.mercy = true
+        this.gameView.scene.fog.density += 0.005 + (0.005 * (Math.floor(this.gameView.gameTime.getElapsedTime())/60))
         this.col.hasCollided = false
-        // console.log("hit slow")
-        if (this.gameView.rollingSpeed > 0.006){
-          // console.log("hit slowzzzzzz")
-          this.gameView.rollingSpeed -= 0.00025
-        }
-        this.col.timesHit += 1
-        this.notHitTime.start();
+          if (this.gameView.rollingSpeed > 0.006){
+            this.gameView.rollingSpeed -= 0.00025
+          }
+          this.col.timesHit += 1
+          this.notHitTime.start();
 
-      } 
-      // else if (!this.col.hasCollided && (this.notHitTime.getElapsedTime() > 5)) {
-      //   this.gameView.rollingSpeed += (0.0001 * this.col.timesHit)
-      //   this.notHitTime.start();
-      //   this.col.timesHit = 0
-        
-      // }
+        } 
+
+
+      if (this.col.gotItem && !(this.gameView.scene.fog.density < 0.011)) {
+        this.col.gotItem = false
+        this.gameView.scene.fog.density -= 0.01
+      }
+
+      if (this.col.mercy && (this.notHitTime.getElapsedTime() > 5)) {
+        this.col.mercy = false
+        this.col.hasCollided = false
+        this.gameView.rollingSpeed += 0.001
+      }
+      console.log()
+      if (Math.floor(this.notHitTime.getElapsedTime()) % 5 === 0 && this.boostable === true){
+        this.boostable = false
+        this.gameView.rollingSpeed += 0.0002
+      } else if (Math.floor(this.notHitTime.getElapsedTime()+1) % 5 === 0){
+        this.boostable = true
+      }
 
       // The Awake mechanic Game Over check
-      if (this.gameView.scene.fog.density > 0.18){
-        gameOver();
+      if (this.gameView.scene.fog.density > 0.16){
+        // this.gameOver.bind(this);
+        this.gameOver();
       }
 
       // console.log(Math.floor(gameTime.getElapsedTime()));
     
     if(this.gameView.clock.getElapsedTime()>this.bugReleaseInterval){
-      // console.log("rollingGround is:", this.gameView.rollingGroundSphere)
       this.gameView.clock.start();
     	this.enemy.addPathBug(this.gameView.rollingGroundSphere);
 
-    // // 	if(!hasCollided){
-    // // 		score+=2*bugReleaseInterval;
-    // // 		scoreText.innerHTML=score.toString();
-    // // 	}
+    	if(!this.col.hasCollided){
+        this.score += 100 * this.bugReleaseInterval;
+        console.log(this.score)
+    		// this.scoreText.innerHTML=this.score.toString();
+    	}
     }
-
-    // console.log(this)
-
-    this.col.doBugLogic(this.gameView, this.enemy, this.effects, this.col);
+    this.col.doBugLogic(this.gameView, this.enemy, this.effects, this.col, this.item);
     this.effects.doHitLogic(this.gameView);
     
     this.gameView.rollingGroundSphere.rotation.x += this.gameView.rollingSpeed;
@@ -178,21 +265,29 @@ class Game {
     // }
 	
 
+    // endGame() {
+    //   clearInterval(this.createEnemy);
+    //   document.getElementById('splash').style.visibility = 'visible';
+    //   document.getElementById('play_btn_txt').innerHTML = 'Play Again';
+    //   document.getElementById('instructions').innerHTML = '';
+    //   document.getElementById('title_txt').innerHTML = 'The empire defeated you.';
+    // }
+  
+    // clearGame() {
+    //   clearInterval(this.create);
+    //   this.music.stop();
+    //   this.soundOn = false;
+    // }
+    
+    // draw() {
+    //   document.getElementById('damage').innerHTML = `Health: ${100 - Math.floor(this.damage)}%`;
+    //   document.getElementById('score').innerHTML = `Score: ${Math.floor(this.killedTieFighters)}`;
+    //   document.getElementById('music').innerHTML = `Sound: ${this.musicPlaying()}`;
+    //   this.bg.draw();
+    //   this.drawEnemies();
+    // }
+
 	
-
-	// gameOver () {
-	// cancelAnimationFrame( globalRenderID );
-	// //window.clearInterval( powerupSpawnIntervalID );
-	// }
-
-	// onWindowResize() {
-	// 	//resize & align
-	// 	sceneHeight = window.innerHeight;
-	// 	sceneWidth = window.innerWidth;
-	// 	renderer.setSize(sceneWidth, sceneHeight);
-	// 	camera.aspect = sceneWidth/sceneHeight;
-	// 	camera.updateProjectionMatrix();
-	// }
 
 };
 	///// StartUP HERE/////

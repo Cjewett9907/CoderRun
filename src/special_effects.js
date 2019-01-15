@@ -5,7 +5,7 @@ const Enemy = require('./enemy')
 
 class Effects {
     constructor(){
-        this.particleCount = 20
+        this.particleCount = 80
         this.particleGeometry = new t.Geometry();
         this.partMaterial = new t.ParticleBasicMaterial({color: 0xff3200, size: 0.05});
         this.particles = new t.Points( this.particleGeometry, this.partMaterial );
