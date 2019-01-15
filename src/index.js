@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     game = new Game();
     game.start();
+    // game.playSounds();
    
 
   })

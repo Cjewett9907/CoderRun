@@ -54,6 +54,7 @@ class Game {
     this.enemy.addWorldBugs(this.gameView.rollingGroundSphere);
     this.enemy.createBugsPool();
     this.gameView.render();
+    this.playSounds();
 
   //   // start 
     this.update();
@@ -101,7 +102,8 @@ class Game {
   }
 
   handleMusic() {
-    this.music = new Sound('./sounds/srcxxxx');
+    console.log(Sound)
+    this.music = new Sound('./spider_dance');
     document.getElementById('music').addEventListener('click', () => {
       if (this.soundOn) {
         this.soundOn = false;

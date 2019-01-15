@@ -20,4 +20,4 @@ class Sound {
     }
   }
   
-  export default Sound;
+ module.exports = Sound;
