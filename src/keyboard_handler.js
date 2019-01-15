@@ -14,15 +14,15 @@ export const onKeyDown = function (event, keypress) {
         break;
       case 40: // down
       case 83: // s
-      keypress.attack = true;
+      // keypress.space = true;
         break;
       case 39: // right
       case 68: // d
       keypress.right = true;
         break;
       case 32: // space
-        if (canJump === true) velocity.y += 350;
-        canJump = false;
+      keypress.space = true;
+        
         break;
       default:
         break;

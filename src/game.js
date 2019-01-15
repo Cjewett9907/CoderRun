@@ -102,8 +102,12 @@ class Game {
   }
 
   handleMusic() {
-    console.log(Sound)
-    this.music = new Sound('./spider_dance');
+    
+    this.music = new Sound('./spider_dance.mp3');
+    // this.soundOn = true;
+    // this.music.start(this);
+
+
     document.getElementById('music').addEventListener('click', () => {
       if (this.soundOn) {
         this.soundOn = false;
@@ -190,12 +194,15 @@ class Game {
           }
         }
 
-			 if (this.keypress.attack) {// spacebar pause
-          if (this.paused) {
-            this.paused = false
-          } else if (!this.paused) {
-            this.paused = true
+			 if (this.keypress.space) {// spacebar pause
+          if (this.soundOn) {
+            this.soundOn = false
+            this.music.stop();
+          } else if (!this.soundOn) {
+            this.soundOn = true
+            this.music.start(this);
           }
+          this.keypress.space = false
 		  	}
       
       this.keypress.jump = false
@@ -218,8 +225,23 @@ class Game {
           }
           this.col.timesHit += 1
           this.notHitTime.start();
-
         } 
+
+      // increases the frequency of bug realease
+      console.log(this.gameView.gameTime.getElapsedTime())
+      if (this.gameView.gameTime.getElapsedTime() > 30){
+        this.bugReleaseInterval=0.45;
+      }
+      if (this.gameView.gameTime.getElapsedTime() > 60){
+        this.bugReleaseInterval=0.40;
+      }
+      if (this.gameView.gameTime.getElapsedTime() > 90){
+        this.bugReleaseInterval=0.35;
+      }
+      if (this.gameView.gameTime.getElapsedTime() > 120){
+        this.bugReleaseInterval=0.30;
+      }
+
 
 
       if (this.col.gotItem && !(this.gameView.scene.fog.density < 0.011)) {
@@ -282,9 +304,11 @@ class Game {
     // } else {
     // requestAnimationFrame(update);//request next update
     // } 
-    if (!this.finished){
-      requestAnimationFrame(this.update.bind(this));
-    }
+
+
+      if (!this.finished){
+        requestAnimationFrame(this.update.bind(this));
+      }
     }
 
 

@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
          I promise`})
   
   document.getElementById('keys').addEventListener('mouseover', () => {
-    keys.innerHTML = '<br> <br> <br> <br> Use the right arrow/left arrow to move <br> <br> up to jump and up/up to double jump'
+    keys.innerHTML = '<br> <br> <br> <br> Use the right arrow/left arrow to move <br> <br> up to jump and up/up to double jump <br> <br> space to toggle music'
   })
   
   document.getElementById('play_btn').addEventListener('click', () => {   
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     game = new Game();
     game.start();
-    // game.playSounds();
+    
    
 
   })
