@@ -18,20 +18,35 @@ body {
   height: 100%;
 }
 
+.stats{
+  font-family: 'Orbitron', sans-serif;
+  position: absolute;
+  color: white;
+  margin: 20px;
+  background-color: black;
+  opacity: 1;
+  padding: 10 10;
+  border: 1px solid #1a8a04;
+  border-radius: 20px;
+  /* z-index: 500; */
+}
+
 #splash h1 {
   font-family: 'Orbitron', sans-serif;
   font-weight: lighter;
-  font-size: 60px;
+  font-size: 70px;
 }
 #instructions_text{
   font-family: 'Orbitron', sans-serif;
+  
 
 }
 
 #splash h2 {
+  
   font-family: 'Orbitron', sans-serif;
   font-weight: lighter;
-  font-size: 20px;
+  font-size: 30px;
   
   color: #1a8a04;
   text-align: center;
@@ -42,7 +57,7 @@ body {
   position: relative;
   font-family: 'Orbitron', sans-serif;
   font-weight: lighter;
-  font-size: 40px;
+  font-size: 50px;
   background-color: black;
   width: auto;
   padding-left: 40px;
@@ -110,6 +125,10 @@ h1 #music{
   display: inline-block; */
 }
 
+#title_text{
+  border-color: red;
+}
+
 #splash-effect{
   background-color: black;
   z-index: 200;
@@ -118,6 +137,9 @@ h1 #music{
   animation-name: lightning;
   animation-duration: 6s;
   animation-iteration-count: infinite;
+  /* display: flex; */
+  /* flex-direction: row;
+  justify-content: center; */
 
 }
 

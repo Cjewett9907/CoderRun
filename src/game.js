@@ -1,10 +1,8 @@
 // const BugManager = require('./bug_manager')
 const t = require('three');
-const World = require('./world');
 const GameView = require('./game_view');
 const Collision = require('./collision');
 const keyboardHandler = require('./keyboard_handler');
-// const Enemy = require('./enemy')
 const Enemy2 = require('./enemy2');
 const Effects = require('./special_effects');
 const Item = require('./items');
@@ -21,15 +19,15 @@ class Game {
 		this.sphericalHelper = new t.Spherical();
 		this.pathAngleValues=[1.52,1.57,1.62];
 		this.jumping = false;
-		// this.stats = 0;
+		this.stats = 0;
 		// this.player = player;
-		this.gameOver = false;
+		this.finshed = false;
     this.paused = false;
     this.validMove = true;
     this.gameView = new GameView();
     this.keypress = { jump: false, left: false, right: false, attack: false }
     this.col = new Collision();
-    // console.log(this.gameView)
+   
     this.bugReleaseInterval=0.5;
 		this.lastBugReleaseTime=0;
     this.enemy = new Enemy2();
@@ -39,38 +37,53 @@ class Game {
     this.col.timeshit = 0;
     this.col.mercy = false;
     this.boostable = false;
-    this.canDoubleJump = false;
+    this.canDoubleJump = true;
     this.soundOn = false
+    
 
-    // console.log(this)
 	}
 
 
   
   start(){
-    // console.log('starting...')
+    this.finished = false
     document.addEventListener('keydown', (event) => keyboardHandler.onKeyDown(event, this.keypress), false);
     document.addEventListener('keyup', keyboardHandler.onKeyUp, false);
     this.notHitTime.start();
     this.gameView.createScene(this.effects);
     this.enemy.addWorldBugs(this.gameView.rollingGroundSphere);
     this.enemy.createBugsPool();
-    // this.item.createItem();
     this.gameView.render();
-  //   this.bindKeyHandlers();
-  //   this.lastTime = 0;
 
   //   // start 
     this.update();
   }
 
   gameOver(){
-    // cancelAnimationFrame( this.update);
+    
+    cancelAnimationFrame(this.update);
     // clearInterval(this.update);
     document.getElementById('splash').style.visibility = 'visible';  
-    document.getElementById('instructions').innerHTML = '';
-    // document.getElementById('title_text').innerHTML = 'You stayed awake Xnum seconds...'; (Math.floor(Math.floor(this.gameView.gameTime.getElapsedTime()))
-    document.getElementById('play_btn_text').innerHTML = 'Try Again?';   
+    document.getElementById('instructions_text').innerHTML = 'You fell asleep';
+   
+    document.getElementById('title_text').innerHTML = `You stayed awake ${Math.floor(this.gameView.gameTime.getElapsedTime())} seconds...`
+    document.getElementById('play_text').innerHTML = 'Try Again?';  
+
+    // document.getElementById('splash-effect').style.visibility = 'hidden'; 
+    // document.getElementById('splash').style.visibility = 'hidden';
+    
+    document.getElementById('play_btn').addEventListener('click', () => {
+      console.log("CLICKED THE BUTTON")
+    
+      window.location.reload()
+      // document.getElementById('splash-effect').style.visibility = 'hidden'; 
+      // clearInterval(this.start());
+      this.clearGame();
+      
+    })
+
+
+    
   }
   
   isMusicPlaying() {
@@ -104,10 +117,14 @@ class Game {
 
 
 	update(){
+    document.getElementById('score').innerHTML = `${this.score}`;
+
     this.gameView.heroSprite.position.y += this.bounceValue;
     this.bounceValue-=this.gravity; 
+
     if((this.gameView.heroSprite.position.y - 0.3) <= (this.gameView.heroGroundedY )){
       this.jumping=false;
+      this.canDoubleJump = true;
       this.bounceValue=(Math.random()*0.005)+0.012; 
     } 
     // if 
@@ -130,10 +147,9 @@ class Game {
 
         if (this.keypress.jump && this.jumping && this.canDoubleJump){
           this.keypress.jump = false
-          this.bounceValue=0.2;
+          this.bounceValue=0.15;
           // this.gameView.heroSprite.position.y += this.bounceValue;
-          this.jumping=true;
-          this.canDoubleJump === false
+          this.canDoubleJump = false
         }
       
 
@@ -192,6 +208,7 @@ class Game {
 
       if (this.col.hasCollided){
         this.col.mercy = true
+        this.hitCoeff = ((0.005 * (Math.floor(this.gameView.gameTime.getElapsedTime())/60)) < 0.005) ? (0.005 * (Math.floor(this.gameView.gameTime.getElapsedTime())/60)) : 0.005
         this.gameView.scene.fog.density += 0.005 + (0.005 * (Math.floor(this.gameView.gameTime.getElapsedTime())/60))
         this.col.hasCollided = false
           if (this.gameView.rollingSpeed > 0.006){
@@ -223,6 +240,7 @@ class Game {
 
       // The Awake mechanic Game Over check
       if (this.gameView.scene.fog.density > 0.16){
+        this.finished = true
         // this.gameOver.bind(this);
         this.gameOver();
       }
@@ -234,9 +252,17 @@ class Game {
     	this.enemy.addPathBug(this.gameView.rollingGroundSphere);
 
     	if(!this.col.hasCollided){
-        this.score += 100 * this.bugReleaseInterval;
+        this.score += 200 * this.bugReleaseInterval;
+
+        if(this.gameView.clock.getElapsedTime() > 20){
+          this.score += 200 * this.bugReleaseInterval
+        }
+        if(this.gameView.clock.getElapsedTime() > 40){
+          this.score += 200 * this.bugReleaseInterval
+        }
         console.log(this.score)
-    		// this.scoreText.innerHTML=this.score.toString();
+        
+    		
     	}
     }
     this.col.doBugLogic(this.gameView, this.enemy, this.effects, this.col, this.item);
@@ -254,7 +280,9 @@ class Game {
     // } else {
     // requestAnimationFrame(update);//request next update
     // } 
+    if (!this.finished){
       requestAnimationFrame(this.update.bind(this));
+    }
     }
 
 
@@ -273,11 +301,11 @@ class Game {
     //   document.getElementById('title_txt').innerHTML = 'The empire defeated you.';
     // }
   
-    // clearGame() {
-    //   clearInterval(this.create);
-    //   this.music.stop();
-    //   this.soundOn = false;
-    // }
+    clearGame() {
+      clearInterval(this.start());
+      // this.music.stop();
+      // this.soundOn = false;
+    }
     
     // draw() {
     //   document.getElementById('damage').innerHTML = `Health: ${100 - Math.floor(this.damage)}%`;

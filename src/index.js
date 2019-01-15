@@ -10,22 +10,27 @@ document.addEventListener("DOMContentLoaded", () => {
   // const bg = new Background()
   // const splashBackground = setInterval(bg.draw, 40);
   document.getElementById('play_text').innerHTML = 'Play'
-  document.getElementById('title_txt').innerHTML = 'Coder Run'
-  document.getElementById('instructions_text').innerHTML = 
+  document.getElementById('title_text').innerHTML = 'Coder Run'
+  document.getElementById('instructions_text').addEventListener('mouseover', () => {
+    instructions_text.innerHTML = 
         `Inspired by a Software engineers nightmare <br> <br>
          more dramatic effect coming... <br> <br>
-         I promise`
-
+         I promise`})
+  
+  document.getElementById('keys').addEventListener('mouseover', () => {
+    keys.innerHTML = '<br> <br> <br> <br> Use the right arrow/left arrow to move <br> <br> up to jump and up/up to double jump'
+  })
+  
   document.getElementById('play_btn').addEventListener('click', () => {   
     if (game) {
       game.clearGame()
     }
+    
     document.getElementById('splash').style.visibility = 'hidden';
-    // clearInterval(splashBackground)
 
     game = new Game();
     game.start();
-
+   
 
   })
 
