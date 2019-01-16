@@ -66,26 +66,34 @@ class Game {
     // clearInterval(this.update);
     document.getElementById('splash').style.visibility = 'visible';  
     document.getElementById('instructions_text').innerHTML = 'You fell asleep';
-   
     document.getElementById('title_text').innerHTML = `You stayed awake ${Math.floor(this.gameView.gameTime.getElapsedTime())} seconds...`
     document.getElementById('play_text').innerHTML = 'Try Again?';  
-
-    // document.getElementById('splash-effect').style.visibility = 'hidden'; 
-    // document.getElementById('splash').style.visibility = 'hidden';
-    
     document.getElementById('play_btn').addEventListener('click', () => {
-      console.log("CLICKED THE BUTTON")
-    
       window.location.reload()
       // document.getElementById('splash-effect').style.visibility = 'hidden'; 
       // clearInterval(this.start());
       this.clearGame();
       
     })
-
-
-    
   }
+  gameWon(){
+    
+    cancelAnimationFrame(this.update);
+    // clearInterval(this.update);
+    document.getElementById('splash').style.visibility = 'visible';  
+    document.getElementById('instructions_text').innerHTML = 'You Escaped Coder Run!!';
+    // document.getElementById('title_text').innerHTML = `You stayed awake ${Math.floor(this.gameView.gameTime.getElapsedTime())} seconds...`
+    document.getElementById('play_text').innerHTML = 'Play Again?';  
+    document.getElementById('play_btn').addEventListener('click', () => {
+      window.location.reload()
+      // document.getElementById('splash-effect').style.visibility = 'hidden'; 
+      // clearInterval(this.start());
+      this.clearGame();
+      
+    })
+  }
+
+
   
   isMusicPlaying() {
     if (this.soundOn) {
@@ -142,13 +150,6 @@ class Game {
           this.bounceValue=0.2;
           // this.gameView.heroSprite.position.y += this.bounceValue;
           this.jumping=true;
-          
-          // if (this.canDoubleJump && this.doubleJump > 0){
-          //   console.log("can double")
-          //   this.keypress.jump = false
-          //   this.bounceValue=0.2;
-          //   this.canDoubleJump = false
-          // }
         }
 
         if (this.keypress.jump && this.jumping && this.canDoubleJump){
@@ -157,16 +158,6 @@ class Game {
           // this.gameView.heroSprite.position.y += this.bounceValue;
           this.canDoubleJump = false
         }
-      
-
-        // else if (this.jumping && this.doubleJump) { 
-        //   if ( this.keypress.jump ) {//up, jump
-        //     this.doublejump = false
-        //     console.log("is double")
-        //     this.bounceValue=0.1;
-        //     this.jumping=true;
-        //   }
-        // }
 
         if ( this.keypress.right) {//right
 				  if(this.gameView.currentLane == this.gameView.middleLane){
@@ -212,23 +203,20 @@ class Game {
 
     this.delta = this.gameView.clock.getDelta(); 
     this.gameView.annie.update(1000 * this.delta);
-      // console.log("THIS COLLISION HANDLER IS", this.col)
-      // this.gameView.scene.fog.density += 0.0001
 
       if (this.col.hasCollided){
         this.col.mercy = true
         this.hitCoeff = ((0.005 * (Math.floor(this.gameView.gameTime.getElapsedTime())/60)) < 0.005) ? (0.005 * (Math.floor(this.gameView.gameTime.getElapsedTime())/60)) : 0.005
-        this.gameView.scene.fog.density += 0.005 + (0.005 * (Math.floor(this.gameView.gameTime.getElapsedTime())/60))
+        this.gameView.scene.fog.density += 0.005 + (this.hitCoeff)
         this.col.hasCollided = false
-          if (this.gameView.rollingSpeed > 0.006){
-            this.gameView.rollingSpeed -= 0.00025
+          if (this.gameView.rollingSpeed > 0.008){
+            this.gameView.rollingSpeed -= 0.0001
           }
           this.col.timesHit += 1
           this.notHitTime.start();
         } 
 
       // increases the frequency of bug realease
-      console.log(this.gameView.gameTime.getElapsedTime())
       if (this.gameView.gameTime.getElapsedTime() > 30){
         this.bugReleaseInterval=0.45;
       }
@@ -241,7 +229,10 @@ class Game {
       if (this.gameView.gameTime.getElapsedTime() > 120){
         this.bugReleaseInterval=0.30;
       }
-
+      if (this.gameView.gameTime.getElapsedTime() > 10){
+        this.finished = true;
+        this.gameWon();
+      }
 
 
       if (this.col.gotItem && !(this.gameView.scene.fog.density < 0.011)) {
@@ -252,12 +243,11 @@ class Game {
       if (this.col.mercy && (this.notHitTime.getElapsedTime() > 5)) {
         this.col.mercy = false
         this.col.hasCollided = false
-        this.gameView.rollingSpeed += 0.001
+        // this.gameView.rollingSpeed += 0.001
       }
-      console.log()
-      if (Math.floor(this.notHitTime.getElapsedTime()) % 5 === 0 && this.boostable === true){
+      if (Math.floor(this.notHitTime.getElapsedTime()) % 5 === 0 && this.boostable === true && this.gameView.rollingSpeed < 0.015 ){
         this.boostable = false
-        this.gameView.rollingSpeed += 0.0002
+        this.gameView.rollingSpeed += 0.0003
       } else if (Math.floor(this.notHitTime.getElapsedTime()+1) % 5 === 0){
         this.boostable = true
       }
@@ -268,8 +258,6 @@ class Game {
         // this.gameOver.bind(this);
         this.gameOver();
       }
-
-      // console.log(Math.floor(gameTime.getElapsedTime()));
     
     if(this.gameView.clock.getElapsedTime()>this.bugReleaseInterval){
       this.gameView.clock.start();
@@ -284,9 +272,6 @@ class Game {
         if(this.gameView.clock.getElapsedTime() > 40){
           this.score += 200 * this.bugReleaseInterval
         }
-        console.log(this.score)
-        
-    		
     	}
     }
     this.col.doBugLogic(this.gameView, this.enemy, this.effects, this.col, this.item);
