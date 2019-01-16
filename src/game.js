@@ -229,7 +229,7 @@ class Game {
       if (this.gameView.gameTime.getElapsedTime() > 120){
         this.bugReleaseInterval=0.30;
       }
-      if (this.gameView.gameTime.getElapsedTime() > 10){
+      if (this.gameView.gameTime.getElapsedTime() > 180){
         this.finished = true;
         this.gameWon();
       }

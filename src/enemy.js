@@ -8,7 +8,6 @@ const GameView = require('./game_view');
 const Items = require('./items');
 
   exports.addWorldBugs = function(ground){
-    // console.log("worldbug ground is:", ground)
     numBugs=36;
     gap=6.28/36;
     for(let i=0;i<numBugs;i++){
@@ -91,12 +90,10 @@ const Items = require('./items');
     bug.receiveShadow=false;
     bug.position.y = -1;
     bug.position.z = 5;
-    // console.log(bug)
     return bug;
   }
 
   exports.createBugsPool = (bugPool = []) => {
-    // console.log("making bug pool")
     this.bugPool = bugPool
     let maxBugsInPool=100;
     let newBug;
@@ -105,7 +102,6 @@ const Items = require('./items');
       newBug=this.createBug();
       this.bugPool.push(newBug);
     }
-    // console.log("Generated bug pool", this.bugPool)
   }
 
 // }

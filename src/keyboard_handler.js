@@ -6,7 +6,6 @@ export const onKeyDown = function (event, keypress) {
       case 87: // w
         
         keypress.jump = true;
-        // console.log("pressed jump", keypress.jump)
         break;
       case 37: // left
       case 65: // a
@@ -30,24 +29,5 @@ export const onKeyDown = function (event, keypress) {
   };
 
 export const onKeyUp = function (event) {
-    // switch (event.keyCode) {
-    //   case 38: // up
-    //   case 87: // w
-    //     moveForward = false;
-    //     break;
-    //   case 37: // left
-    //   case 65: // a
-    //     moveLeft = false;
-    //     break;
-    //   case 40: // down
-    //   case 83: // s
-    //     moveBackward = false;
-    //     break;
-    //   case 39: // right
-    //   case 68: // d
-    //     moveRight = false;
-    //     break;
-    //   default:
-    //     break;
-    // }
+
   };

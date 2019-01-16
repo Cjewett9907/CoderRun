@@ -14,7 +14,7 @@ class Enemy{
 
 
   addWorldBugs(ground){
-    // console.log("worldbug ground is:", ground)
+ 
     this.currentGround = ground
     const numBugs=36;
     const gap=6.28/36;
@@ -29,11 +29,8 @@ class Enemy{
     const sphericalHelper = new t.Spherical();
     const worldRadius = 26;
     const pathAngleValues = [1.52,1.57,1.62]
-    // this.currentGround = currentGround
     if(inPath){
 
-        // console.log("MAKING PATH BUG")
-        // console.log(this.bugPool)
       if(this.bugPool.length === 0)return;
         this.newBug = this.bugPool.pop();
         this.newBug.visible = true;
@@ -49,7 +46,7 @@ class Enemy{
         }
       }else {
         this.newBug = this.createBug();
-        let swarmAreaAngle=0;//[1.52,1.57,1.62];
+        let swarmAreaAngle=0;
       
     
           if(isLeft){
@@ -75,8 +72,6 @@ class Enemy{
     this.currentGround = ground
     let options=[0,1,2];
 
-    
-    // console.log('recieved bugpool addpath', this.bugPool)
     if(Math.random()<0.05){
       let lane10= Math.floor(Math.random()*2);
       this.items.addItem(lane10, this.currentGround);
@@ -115,17 +110,6 @@ class Enemy{
       }
 
     }
-
-
-
-
-    // if(Math.random()<0.05){
-    //   let lane10= Math.floor(Math.random()*2);
-    //   this.items.addItem(lane10, this.currentGround);
-    //   this.items.createItem();
-      
-    //   console.log('current ground', this.currentGround)
-    // }a
   }
 
   createBug(){
@@ -140,12 +124,10 @@ class Enemy{
     bug.receiveShadow=false;
     bug.position.y = -1;
     bug.position.z = 5;
-    // console.log(bug)
     return bug;
   }
 
   createBugsPool(){
-    // console.log("making bug pool")
     let maxBugsInPool=100;
     let newBug;
     
@@ -153,7 +135,6 @@ class Enemy{
       newBug=this.createBug();
       this.bugPool.push(newBug);
     }
-    // console.log("Generated bug pool", this.bugPool)
   }
 }
 

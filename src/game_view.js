@@ -69,7 +69,6 @@ class GameView {
       this.renderer.setSize( this.sceneWidth, this.sceneHeight );
       this.dom = document.getElementById('Main-Game');
       
-      // console.log("renderer is:", this.renderer)
       this.dom.appendChild(this.renderer.domElement);
       //this.stats = new Stats();
       //this.dom.appendChild(this.stats.dom);
@@ -151,7 +150,6 @@ class GameView {
     // this.renderer.bind(this)
 
     //resize & align
-    // console.log("this is:", this)
 		this.sceneHeight = window.innerHeight;
 		this.sceneWidth = window.innerWidth;
 		this.renderer.setSize(this.sceneWidth, this.sceneHeight);

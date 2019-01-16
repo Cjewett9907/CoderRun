@@ -17,7 +17,6 @@ class Item {
         const pathAngleValues = [1.52,1.57,1.62]
      
         this.newItem = this.createItem();
-        // console.log(this.newItem)
         this.newItem.visible = true;
             
          // This handles the starting position of objects relative to the spinning world
@@ -26,7 +25,6 @@ class Item {
         //// This is for Flying Bugs
         // sphericalHelper.set( worldRadius+2, pathAngleValues[row], -ground.rotation.x+4 );
         this.itemPool.push(this.newItem);
-        // console.log("old ground", ground)
         this.newItem.position.setFromSpherical( sphericalHelper );
         this.groundVector = ground.position.clone().normalize();
         let itemVector = this.newItem.position.clone().normalize();
@@ -35,8 +33,6 @@ class Item {
        
         ground.add(this.newItem);
 
-        // console.log("new item", this.newItem)
-        // console.log("new ground", ground)
     
         }
 

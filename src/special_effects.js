@@ -18,7 +18,6 @@ class Effects {
             this.particleGeometry.vertices.push( vertex );
         }
         for (var i = 0; i < this.particleCount; i ++ ) {
-            // console.log("this is:", this)
             this.particleGeometry.vertices[i].multiplyScalar(this.hitPower);
         }
 
@@ -28,7 +27,6 @@ class Effects {
             this.particles.visible=false;
         }
         this.particleGeometry.verticesNeedUpdate = true;
-        // console.log("QQQQQQQ gameView is:", gameView)
         gameView.scene.add( this.particles );
         // this.particles.visible=false;        
     }
