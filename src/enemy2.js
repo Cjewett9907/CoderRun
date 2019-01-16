@@ -8,8 +8,6 @@ class Enemy{
         this.bugPool =[]
         this.items = new Item();
         this.spawnTimer = new t.Clock().start();
-       
-
     }
 
 

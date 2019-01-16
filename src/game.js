@@ -247,7 +247,7 @@ class Game {
         this.gameOver();
       }
     
-    if(this.gameView.clock.getElapsedTime()>this.bugReleaseInterval && this.gameView.gameTime.getElapsedTime() > 5){
+    if(this.gameView.clock.getElapsedTime()>this.bugReleaseInterval && this.gameView.gameTime.getElapsedTime() > 3){
       this.gameView.clock.start();
     	this.enemy.addPathBug(this.gameView.rollingGroundSphere);
 

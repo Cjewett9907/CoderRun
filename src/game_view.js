@@ -72,7 +72,6 @@ class GameView {
       this.dom.appendChild(this.renderer.domElement);
       //this.stats = new Stats();
       //this.dom.appendChild(this.stats.dom);
-      
       this.addWorld();
       this.addHero();
       this.addSky();

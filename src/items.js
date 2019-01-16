@@ -10,8 +10,6 @@ class Item {
 
     }
     addItem(row, ground){
-        
-   
         const sphericalHelper = new t.Spherical();
         const worldRadius = 26;
         const pathAngleValues = [1.52,1.57,1.62]
@@ -32,8 +30,6 @@ class Item {
         this.newItem.rotation.x += (Math.random() * (2*Math.PI/10))+-Math.PI/10;
        
         ground.add(this.newItem);
-
-    
         }
 
         createItem(){
