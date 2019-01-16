@@ -232,7 +232,9 @@ class Game {
       if (this.col.mercy && (this.notHitTime.getElapsedTime() > 5)) {
         this.col.mercy = false
         // this.col.hasCollided = false
-        this.gameView.rollingSpeed += this.boostDiff
+        console.log(this.boostDiff)
+
+        this.gameView.rollingSpeed += this.boostDiff * 2
         this.boostDiff = 0
       }
       if (Math.floor(this.notHitTime.getElapsedTime()) % 5 === 0 && this.boostable === true && this.gameView.rollingSpeed < 0.015 ){
