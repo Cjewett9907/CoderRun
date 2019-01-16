@@ -32,14 +32,30 @@ body {
 }
 
 #splash h1 {
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 30px;
   font-family: 'Orbitron', sans-serif;
   font-weight: lighter;
   font-size: 70px;
+  
 }
 #instructions_text{
   font-family: 'Orbitron', sans-serif;
   
+  position: relative;
+  margin: 0 auto;
+  padding: 1%;
+  width: 70%;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 2px solid black;
+  border-radius: 10px;
+}
 
+#instructions_text:hover{
+  background-color: rgba(255, 255, 255, 0.4);
 }
 
 #splash h2 {
@@ -57,19 +73,24 @@ body {
   position: relative;
   font-family: 'Orbitron', sans-serif;
   font-weight: lighter;
-  font-size: 50px;
-  background-color: black;
-  width: auto;
-  padding-left: 40px;
-  padding-right: 40px;
-  height: 70px;
+  font-size: 30px;
+  background-color: rgba(255, 255, 255, 0.2);
+  /* height: 70px; */
   display: flex;
+  padding: 1%;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
   color: #1a8a04;
   border: 2px solid black;
+  width: 70%;
+  margin: 0 auto;
 }
+
+#play_btn:hover{
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
 
 .user_info {
   /* position: absolute; */
@@ -143,6 +164,27 @@ h1 #music{
 
 }
 
+#keys{
+  position: relative;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: lighter;
+  font-size: 30px;
+  color: #1a8a04;
+  /* padding-left: 15%; */
+  padding: 1%;
+  width: 70%;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.2);
+  background-image: url('./keyboard.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 10px;
+  text-align: right;
+}
+
+#keys:hover{
+  background-color: rgba(255, 255, 255, 0.4);
+}
 
 
 @keyframes lightning {
@@ -160,6 +202,9 @@ h1 #music{
   100% {background-color: black; }   
 }
 
+#box{
+
+}
 
 
 /* animation- splash effect is a black div.. we want to make it invisable and revisible in a lightning animation effect */

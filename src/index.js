@@ -13,12 +13,11 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById('title_text').innerHTML = 'Coder Run'
   document.getElementById('instructions_text').addEventListener('mouseover', () => {
     instructions_text.innerHTML = 
-        `Inspired by a Software engineers nightmare <br> <br>
-         more dramatic effect coming... <br> <br>
-         I promise`})
+        `After studying too hard for AO4, Max is trapped in the nightmare world of Coder Run <br> <br>
+         Help Max escape the gauntlet of buggy code!`})
   
   document.getElementById('keys').addEventListener('mouseover', () => {
-    keys.innerHTML = '<br> <br> <br> <br> Use the right arrow/left arrow to move <br> <br> up to jump and up/up to double jump <br> <br> space to toggle music'
+    keys.innerHTML = ' <br> Use the right arrow/left arrow to move <br> <br> up to jump and up/up to double jump <br> <br> space to toggle music'
   })
   
   document.getElementById('play_btn').addEventListener('click', () => {   
