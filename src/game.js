@@ -38,7 +38,7 @@ class Game {
     this.col.mercy = false;
     this.boostable = false;
     this.canDoubleJump = true;
-    this.soundOn = false
+    this.soundOn = false;
     
 
 	}
@@ -65,9 +65,9 @@ class Game {
     cancelAnimationFrame(this.update);
     // clearInterval(this.update);
     document.getElementById('splash').style.visibility = 'visible';  
-    document.getElementById('instructions_text').innerHTML = 'You fell asleep';
-    document.getElementById('title_text').innerHTML = `You stayed awake ${Math.floor(this.gameView.gameTime.getElapsedTime())} seconds...`
-    document.getElementById('play_text').innerHTML = 'Try Again?';  
+    document.getElementById('instructions_text').innerHTML = 'HEAR THE STORY AGAIN?';
+    document.getElementById('title_text').innerHTML = `YOU SURVIVED ${Math.floor(this.gameView.gameTime.getElapsedTime())} SECONDS...`
+    document.getElementById('play_text').innerHTML = 'TRY AGAIN?';  
     document.getElementById('play_btn').addEventListener('click', () => {
       window.location.reload()
       // document.getElementById('splash-effect').style.visibility = 'hidden'; 
@@ -81,8 +81,8 @@ class Game {
     cancelAnimationFrame(this.update);
     // clearInterval(this.update);
     document.getElementById('splash').style.visibility = 'visible';  
-    document.getElementById('instructions_text').innerHTML = 'You Escaped Coder Run!!';
-    // document.getElementById('title_text').innerHTML = `You stayed awake ${Math.floor(this.gameView.gameTime.getElapsedTime())} seconds...`
+    document.getElementById('title_text').innerHTML = 'YOU ESCAPED CODER RUN!!!';
+    document.getElementById('instructions_text').innerHTML = 'HEAR THE STORY AGAIN?';
     document.getElementById('play_text').innerHTML = 'Play Again?';  
     document.getElementById('play_btn').addEventListener('click', () => {
       window.location.reload()
@@ -110,10 +110,9 @@ class Game {
   }
 
   handleMusic() {
-    
     this.music = new Sound('./spider_dance.mp3');
-    // this.soundOn = true;
-    // this.music.start(this);
+    this.soundOn = true; 
+    this.music.start(this);
 
 
     document.getElementById('music').addEventListener('click', () => {
@@ -242,7 +241,7 @@ class Game {
 
       if (this.col.mercy && (this.notHitTime.getElapsedTime() > 5)) {
         this.col.mercy = false
-        this.col.hasCollided = false
+        // this.col.hasCollided = false
         // this.gameView.rollingSpeed += 0.001
       }
       if (Math.floor(this.notHitTime.getElapsedTime()) % 5 === 0 && this.boostable === true && this.gameView.rollingSpeed < 0.015 ){
@@ -284,38 +283,15 @@ class Game {
 
     this.gameView.render();
 
-    // if (paused) {
-    // 	cancelAnimationFrame( update )
-    // } else {
-    // requestAnimationFrame(update);//request next update
-    // } 
-
-
       if (!this.finished){
         requestAnimationFrame(this.update.bind(this));
       }
     }
-
-
-	// animate(){
-	// 	requestAnimationFrame( animate );
-	// 	world.render();
-	// 	this.update();
-    // }
-	
-
-    // endGame() {
-    //   clearInterval(this.createEnemy);
-    //   document.getElementById('splash').style.visibility = 'visible';
-    //   document.getElementById('play_btn_txt').innerHTML = 'Play Again';
-    //   document.getElementById('instructions').innerHTML = '';
-    //   document.getElementById('title_txt').innerHTML = 'The empire defeated you.';
-    // }
   
     clearGame() {
       clearInterval(this.start());
-      // this.music.stop();
-      // this.soundOn = false;
+      this.music.stop();
+      this.soundOn = false;
     }
     
     // draw() {
@@ -329,9 +305,6 @@ class Game {
 	
 
 };
-	///// StartUP HERE/////
-    // init();
-    ///////////////////
     
     module.exports = Game;
 

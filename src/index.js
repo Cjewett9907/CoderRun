@@ -9,11 +9,11 @@ document.addEventListener("DOMContentLoaded", () => {
   let game;
   // const bg = new Background()
   // const splashBackground = setInterval(bg.draw, 40);
-  document.getElementById('play_text').innerHTML = 'Play'
-  document.getElementById('title_text').innerHTML = 'Coder Run'
+  document.getElementById('play_text').innerHTML = 'PLAY'
+  document.getElementById('title_text').innerHTML = 'CODER RUN'
   document.getElementById('instructions_text').addEventListener('mouseover', () => {
     instructions_text.innerHTML = 
-        `After studying too hard for AO4, Max is trapped in the nightmare world of Coder Run <br> <br>
+        `After studying exessively for exams, Max is trapped in the nightmare world of Coder Run <br> <br>
          Help Max escape the gauntlet of buggy code!`})
   
   document.getElementById('keys').addEventListener('mouseover', () => {

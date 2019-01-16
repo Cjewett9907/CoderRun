@@ -78,7 +78,7 @@ class GameView {
       this.addLight();
       this.addSky();
 
-      // effects.addHit(this)
+      
 
       this.camera = new t.PerspectiveCamera( 90, this.sceneWidth / this.sceneHeight, .1, 100);
       this.camera.position.z = 20;

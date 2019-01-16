@@ -34,11 +34,12 @@ class Collision {
                         itemsToRemove.push(oneItem);
                     }else {
                         if(itemPos.distanceTo(gameView.heroSprite.position)<=0.5){
-                        console.log("Coffee")
+                        
 
                         collisionObject.gotItem = true
-                    // effectObject.addItem(gameView);
-                     // effectObject.doItemLogic(gameView);
+                        // effectObject.addCoffee(gameView);
+                        // effectObject.doCoffeeLogic(gameView);
+                    
                         }
                     }
                 }
@@ -51,45 +52,22 @@ class Collision {
 
 
             enemy.bugsInPath.forEach( function ( element, index ) {
-                // console.log("bugs in path", enemy.bugsInPath)
+            
                 oneBug=enemy.bugsInPath[ index ];
              
                 bugPos.setFromMatrixPosition( oneBug.matrixWorld );
-                // console.log("enemy is", enemy)
-                // console.log("Bug Pos is", bugPos)
-                // console.log("one bug", oneBug)
-               
-                // console.log("enemy", enemy)
-               
-
-                // console.log("item Pos is", itemPos)
-                // console.log("bugPos is", bugPos)
+    
                 if(bugPos.z>20 &&oneBug.visible){//gone out of our view zone
                     bugsToRemove.push(oneBug);
                 }else{//check collision
                     if(bugPos.distanceTo(gameView.heroSprite.position)<=0.5){
-                        console.log("hit");
+                        
 
-
-                        ////////// TA help
-                        // this.hasCollided = true;
-                        // console.log("gameview:", gameView)
                         collisionObject.hasCollided = true
                         effectObject.addHit(gameView);
                         effectObject.doHitLogic(gameView);
                         
                     }
-                    // item logic
-                    // else if(itemPos.distanceTo(gameView.heroSprite.position)<=0.5){
-                    //     console.log("Coffee")
-
-                    //     collisionObject.gotItem = true
-                    //     // effectObject.addItem(gameView);
-                    //     // effectObject.doItemLogic(gameView);
-
-                    // }
-
-
 
                 }
             });

@@ -26,7 +26,7 @@ body {
   background-color: black;
   opacity: 1;
   padding: 10 10;
-  border: 1px solid #1a8a04;
+  border: 1px solid #136103;
   border-radius: 20px;
   /* z-index: 500; */
 }
@@ -65,7 +65,7 @@ body {
   font-weight: lighter;
   font-size: 30px;
   
-  color: #1a8a04;
+  color: #136103;
   text-align: center;
   /* padding-bottom: 45px; */
 }
@@ -82,7 +82,7 @@ body {
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  color: #1a8a04;
+  color: #136103;
   border: 2px solid black;
   width: 70%;
   margin: 0 auto;
@@ -170,7 +170,7 @@ h1 #music{
   font-family: 'Orbitron', sans-serif;
   font-weight: lighter;
   font-size: 30px;
-  color: #1a8a04;
+  color: #136103;
   /* padding-left: 15%; */
   padding: 1%;
   width: 70%;
