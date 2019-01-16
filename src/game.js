@@ -39,7 +39,7 @@ class Game {
     this.boostable = false;
     this.canDoubleJump = true;
     this.soundOn = false;
-    
+    this.boostDiff = 0
 
 	}
 
@@ -199,6 +199,7 @@ class Game {
         this.col.hasCollided = false
           if (this.gameView.rollingSpeed > 0.008){
             this.gameView.rollingSpeed -= 0.0001
+            this.boostDiff += 0.0001
           }
           this.col.timesHit += 1
           this.notHitTime.start();
@@ -231,7 +232,8 @@ class Game {
       if (this.col.mercy && (this.notHitTime.getElapsedTime() > 5)) {
         this.col.mercy = false
         // this.col.hasCollided = false
-        // this.gameView.rollingSpeed += 0.001
+        this.gameView.rollingSpeed += this.boostDiff
+        this.boostDiff = 0
       }
       if (Math.floor(this.notHitTime.getElapsedTime()) % 5 === 0 && this.boostable === true && this.gameView.rollingSpeed < 0.015 ){
         this.boostable = false
