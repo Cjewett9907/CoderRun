@@ -75,7 +75,6 @@ class GameView {
       
       this.addWorld();
       this.addHero();
-      this.addLight();
       this.addSky();
 
       
@@ -126,20 +125,6 @@ class GameView {
 		this.rollingSkyCylinder.position.z = 2;
 		// rollingSkyCylinder.rotation.z=-Math.PI/2;
 	}
-	
-	addLight(){
-		this.hemisphereLight = new t.HemisphereLight(0xfffafa,0x000000, .9)
-		this.scene.add(this.hemisphereLight);
-		this.sun = new t.DirectionalLight( 0xcdc1c5, 0.9);
-		this.sun.position.set( 12,6,-7 );
-		this.sun.castShadow = true;
-		this.scene.add(this.sun);
-		//Set up shadow properties for the sun light
-		this.sun.shadow.mapSize.width = 256;
-		this.sun.shadow.mapSize.height = 256;
-		this.sun.shadow.camera.near = 0.5;
-		this.sun.shadow.camera.far = 50 ;
-  }
 
   render(){
     this.renderer.render(this.scene, this.camera);//draw

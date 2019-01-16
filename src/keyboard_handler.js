@@ -4,7 +4,7 @@ export const onKeyDown = function (event, keypress) {
     switch (event.keyCode) {
       case 38: // up
       case 87: // w
-        
+      case 32: // space
         keypress.jump = true;
         break;
       case 37: // left
@@ -19,10 +19,7 @@ export const onKeyDown = function (event, keypress) {
       case 68: // d
       keypress.right = true;
         break;
-      case 32: // space
-      keypress.space = true;
-        
-        break;
+      
       default:
         break;
     }

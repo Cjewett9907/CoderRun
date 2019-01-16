@@ -115,7 +115,7 @@ class Game {
     this.music.start(this);
 
 
-    document.getElementById('music').addEventListener('click', () => {
+    document.getElementById('Main-Game').addEventListener('click', () => {
       if (this.soundOn) {
         this.soundOn = false;
         this.music.stop();
@@ -130,7 +130,7 @@ class Game {
 
 
 	update(){
-    document.getElementById('score').innerHTML = `${this.score}`;
+    document.getElementById('score').innerHTML = `${this.score} PTS`;
 
     this.gameView.heroSprite.position.y += this.bounceValue;
     this.bounceValue-=this.gravity; 
@@ -183,17 +183,6 @@ class Game {
             this.keypress.left = false;
           }
         }
-
-			 if (this.keypress.space) {// spacebar pause
-          if (this.soundOn) {
-            this.soundOn = false
-            this.music.stop();
-          } else if (!this.soundOn) {
-            this.soundOn = true
-            this.music.start(this);
-          }
-          this.keypress.space = false
-		  	}
       
       this.keypress.jump = false
       this.keypress.right = false
@@ -258,7 +247,7 @@ class Game {
         this.gameOver();
       }
     
-    if(this.gameView.clock.getElapsedTime()>this.bugReleaseInterval){
+    if(this.gameView.clock.getElapsedTime()>this.bugReleaseInterval && this.gameView.gameTime.getElapsedTime() > 5){
       this.gameView.clock.start();
     	this.enemy.addPathBug(this.gameView.rollingGroundSphere);
 

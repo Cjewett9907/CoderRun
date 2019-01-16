@@ -17,9 +17,9 @@ document.addEventListener("DOMContentLoaded", () => {
          Help Max escape the gauntlet of buggy code!`})
   
   document.getElementById('keys').addEventListener('mouseover', () => {
-    keys.innerHTML = ' <br> Use the right arrow/left arrow to move <br> <br> up to jump and up/up to double jump <br> <br> space to toggle music'
+    keys.innerHTML = '<br> Use arrow keys or WASD to move, <br> pressing up twice performs a double jump. <br>  Bugs make you drowsy, Coffee wakes you up!'
   })
-  
+
   document.getElementById('play_btn').addEventListener('click', () => {   
     if (game) {
       game.clearGame()
