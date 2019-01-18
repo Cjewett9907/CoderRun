@@ -12,7 +12,7 @@ const Sound = require('./sounds');
 class Game {
 
 	constructor(){
-		this.bounceValue = 0 
+		this.jumpForce = 0 
 		this.gravity = 0.012; 
 		this.score = 0;    
 		this.notHitTime = new t.Clock();
@@ -132,13 +132,13 @@ class Game {
 	update(){
     document.getElementById('score').innerHTML = `${this.score} PTS`;
 
-    this.gameView.heroSprite.position.y += this.bounceValue;
-    this.bounceValue-=this.gravity; 
+    this.gameView.heroSprite.position.y += this.jumpForce;
+    this.jumpForce-=this.gravity; 
 
     if((this.gameView.heroSprite.position.y - 0.3) <= (this.gameView.heroGroundedY )){
       this.jumping=false;
       this.canDoubleJump = true;
-      this.bounceValue=(Math.random()*0.005)+0.012; 
+      this.jumpForce=(Math.random()*0.005)+0.012; 
     } 
     // if 
     // (!this.jumping || this.canDoubleJump) 
@@ -146,15 +146,15 @@ class Game {
         if ( this.keypress.jump && !this.jumping ) {//up, jump
           
           this.keypress.jump = false
-          this.bounceValue=0.2;
-          // this.gameView.heroSprite.position.y += this.bounceValue;
+          this.jumpForce = 0.2;
+          // this.gameView.heroSprite.position.y += this.jumpForce;
           this.jumping=true;
         }
 
         if (this.keypress.jump && this.jumping && this.canDoubleJump){
           this.keypress.jump = false
-          this.bounceValue=0.15;
-          // this.gameView.heroSprite.position.y += this.bounceValue;
+          this.jumpForce = 0.15;
+          // this.gameView.heroSprite.position.y += this.jumpForce;
           this.canDoubleJump = false
         }
 
