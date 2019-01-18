@@ -286,17 +286,6 @@ class Game {
       this.music.stop();
       this.soundOn = false;
     }
-    
-    // draw() {
-    //   document.getElementById('damage').innerHTML = `Health: ${100 - Math.floor(this.damage)}%`;
-    //   document.getElementById('score').innerHTML = `Score: ${Math.floor(this.killedTieFighters)}`;
-    //   document.getElementById('music').innerHTML = `Sound: ${this.musicPlaying()}`;
-    //   this.bg.draw();
-    //   this.drawEnemies();
-    // }
-
-	
-
 };
     
     module.exports = Game;
