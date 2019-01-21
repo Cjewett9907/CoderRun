@@ -1,5 +1,6 @@
 const t = require('three')
 const Effects = require('./special_effects')
+// const Game = require('./game')
 
 class Collision {
     constructor(){
@@ -12,7 +13,7 @@ class Collision {
 
 
 
-        doBugLogic(gameView, enemy, effectObject, collisionObject, item){
+        doBugLogic(gameView, enemy, effectObject, collisionObject, item, difficulty){
              
             let oneBug;
             let oneItem;
@@ -59,7 +60,18 @@ class Collision {
     
                 if(bugPos.z>20 &&oneBug.visible){//gone out of our view zone
                     bugsToRemove.push(oneBug);
-                }else{//check collision
+                }else if(difficulty === 'hard') {
+                    if(bugPos.distanceTo(gameView.heroSprite.position)<=0.6){
+                        
+
+                        collisionObject.hasCollided = true
+                        effectObject.addHit(gameView);
+                        effectObject.doHitLogic(gameView);
+                        
+                    }
+
+                }
+                else{//check collision
                     if(bugPos.distanceTo(gameView.heroSprite.position)<=0.5){
                         
 

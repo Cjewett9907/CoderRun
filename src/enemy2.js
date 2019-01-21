@@ -66,15 +66,20 @@ class Enemy{
   }
 
 
-  addPathBug(ground, recievedBugPool, gameView){
+  addPathBug(ground, difficulty){
     this.currentGround = ground
     let options=[0,1,2];
 
-    if(Math.random()<0.05){
+    if(Math.random()<0.05 && difficulty==='easy'){
       let lane10= Math.floor(Math.random()*2);
       this.items.addItem(lane10, this.currentGround);
       this.items.createItem();
-    }else{
+    }else if(Math.random()<0.03 && difficulty==='hard'){
+      let lane11= Math.floor(Math.random()*2);
+      this.items.addItem(lane11, this.currentGround);
+      this.items.createItem();
+    }
+    else{
       
       if(this.spawnTimer > 15){
       this.addBug(true, 0, false, ground, this.bugPool);

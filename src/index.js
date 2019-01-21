@@ -5,7 +5,7 @@ const GameView = require("./game_view");
 document.addEventListener("DOMContentLoaded", () => {
   const gameEl = document.getElementsByClassName("Main-Game");
 
-
+  let difficulty = 'easy'
   let game;
   // const bg = new Background()
   // const splashBackground = setInterval(bg.draw, 40);
@@ -26,7 +26,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
     document.getElementById('splash').style.visibility = 'hidden';
-    game = new Game();
+    document.getElementById('diff').style.visibility = 'hidden';
+    
+    game = new Game(difficulty);
     game.start();
   })
 
@@ -44,6 +46,13 @@ document.addEventListener("DOMContentLoaded", () => {
         items[i].style.visibility = 'hidden';
       }  
   })
+  document.getElementById('easy').addEventListener('click', () => {   
+   difficulty = 'easy' 
+  })
+  document.getElementById('hard').addEventListener('click', () => {   
+   difficulty = 'hard' 
+  })
+
 
  
   

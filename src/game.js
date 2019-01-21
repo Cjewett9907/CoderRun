@@ -11,7 +11,10 @@ const Sound = require('./sounds');
 
 class Game {
 
-	constructor(){
+	constructor(difficulty){
+
+    this.difficulty = difficulty
+
 		this.jumpForce = 0 
 		this.gravity = 0.012; 
 		this.score = 0;    
@@ -46,6 +49,7 @@ class Game {
 
   
   start(){
+    
     this.finished = false
     document.addEventListener('keydown', (event) => keyboardHandler.onKeyDown(event, this.keypress), false);
     document.addEventListener('keyup', keyboardHandler.onKeyUp, false);
@@ -55,6 +59,14 @@ class Game {
     this.enemy.createBugsPool();
     this.gameView.render();
     this.playSounds();
+    debugger
+    console.log("difficulty is", this.difficulty)
+    console.log(this.difficulty === 'hard')
+
+    if (this.difficulty === 'hard') {
+      this.gameView.rollingSpeed = 0.01
+    } 
+
     this.update();
   }
 
@@ -229,10 +241,14 @@ class Game {
         this.gameView.rollingSpeed += this.boostDiff * 2
         this.boostDiff = 0
       }
-      if (Math.floor(this.notHitTime.getElapsedTime()) % 5 === 0 && this.boostable === true && this.gameView.rollingSpeed < 0.015 ){
+      if (Math.floor(this.notHitTime.getElapsedTime()) % 5 === 0 && this.boostable === true && this.gameView.rollingSpeed < 0.015 && this.difficulty === 'easy' ){
         this.boostable = false
         this.gameView.rollingSpeed += 0.0003
-      } else if (Math.floor(this.notHitTime.getElapsedTime()+1) % 5 === 0){
+      } else if (Math.floor(this.notHitTime.getElapsedTime()) % 5 === 0 && this.boostable === true && this.gameView.rollingSpeed < 0.015 && this.difficulty === 'hard'){
+         this.boostable = false
+         this.gameView.rollingSpeed += 0.0004
+      }
+      else if (Math.floor(this.notHitTime.getElapsedTime()+1) % 5 === 0){
         this.boostable = true
       }
 
@@ -245,7 +261,7 @@ class Game {
     
     if(this.gameView.clock.getElapsedTime()>this.bugReleaseInterval && this.gameView.gameTime.getElapsedTime() > 3){
       this.gameView.clock.start();
-    	this.enemy.addPathBug(this.gameView.rollingGroundSphere);
+    	this.enemy.addPathBug(this.gameView.rollingGroundSphere, this.difficulty);
 
     	if(!this.col.hasCollided){
         this.score += 200 * this.bugReleaseInterval;
@@ -258,7 +274,7 @@ class Game {
         }
     	}
     }
-    this.col.doBugLogic(this.gameView, this.enemy, this.effects, this.col, this.item);
+    this.col.doBugLogic(this.gameView, this.enemy, this.effects, this.col, this.item, this.difficulty);
     this.effects.doHitLogic(this.gameView);
     
     this.gameView.rollingGroundSphere.rotation.x += this.gameView.rollingSpeed;
