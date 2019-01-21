@@ -55,23 +55,18 @@ class Game {
     this.enemy.createBugsPool();
     this.gameView.render();
     this.playSounds();
-
-  //   // start 
     this.update();
   }
 
   gameOver(){
     
     cancelAnimationFrame(this.update);
-    // clearInterval(this.update);
     document.getElementById('splash').style.visibility = 'visible';  
     document.getElementById('instructions_text').innerHTML = 'HEAR THE STORY AGAIN?';
     document.getElementById('title_text').innerHTML = `YOU SURVIVED ${Math.floor(this.gameView.gameTime.getElapsedTime())} SECONDS...`
     document.getElementById('play_text').innerHTML = 'TRY AGAIN?';  
     document.getElementById('play_btn').addEventListener('click', () => {
       window.location.reload()
-      // document.getElementById('splash-effect').style.visibility = 'hidden'; 
-      // clearInterval(this.start());
       this.clearGame();
       
     })
@@ -79,15 +74,12 @@ class Game {
   gameWon(){
     
     cancelAnimationFrame(this.update);
-    // clearInterval(this.update);
     document.getElementById('splash').style.visibility = 'visible';  
     document.getElementById('title_text').innerHTML = 'YOU ESCAPED CODER RUN!!!';
     document.getElementById('instructions_text').innerHTML = 'HEAR THE STORY AGAIN?';
     document.getElementById('play_text').innerHTML = 'Play Again?';  
     document.getElementById('play_btn').addEventListener('click', () => {
       window.location.reload()
-      // document.getElementById('splash-effect').style.visibility = 'hidden'; 
-      // clearInterval(this.start());
       this.clearGame();
       
     })

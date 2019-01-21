@@ -99,60 +99,6 @@ body {
 }
 
 
-.user_info {
-  /* position: absolute; */
-  /* display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  justify-content: flex-start;
-  z-index: 150;
-  bottom: 0%;
-  left: 0%; */
-}
-
-#damage {
-  /* font-size: 20px;
-  z-index: 10;
-  font-family: 'Orbitron', sans-serif;
-  color: white;
-  margin-left: 50px;
-  font-weight: lighter; */
-}
-
-#music {
-  /* font-size: 20px;
-  z-index: 10;
-  font-family: 'Orbitron', sans-serif;
-  color: white;
-  margin-left: 50px;
-  margin-top: 100px;
-  font-weight: lighter;
-  padding-top: 50px; */
-}
-
-h1 #music{
-  /* padding-top: 100px; */
-}
-
-#score {
-  /* font-size: 20px;
-  z-index: 10;
-  font-family: 'Orbitron', sans-serif;
-  color: white;
-  font-weight: lighter;
-  margin-left: 10px; */
-}
-
-/* canvas{
-    position: relative;
-    z-index: 1;
-} */
-
-.screen {
-  /* position: relative;
-  display: inline-block; */
-}
-
 #title_text{
   border-color: red;
 }
@@ -165,9 +111,6 @@ h1 #music{
   animation-name: lightning;
   animation-duration: 6s;
   animation-iteration-count: infinite;
-  /* display: flex; */
-  /* flex-direction: row;
-  justify-content: center; */
 
 }
 
@@ -189,7 +132,27 @@ h1 #music{
   text-align: right;
 }
 
+#diff{
+  position: relative;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: lighter;
+  font-size: 30px;
+  color: #136103;
+  padding-left: 25%;
+  padding: 1%;
+  width: 70%;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.2);
+  background-size: contain;
+  background-repeat: no-repeat;
+  border-radius: 10px;
+  text-align: right;
+}
+
 #keys:hover{
+  background-color: rgba(255, 255, 255, 0.4);
+}
+#diff:hover{
   background-color: rgba(255, 255, 255, 0.4);
 }
 
