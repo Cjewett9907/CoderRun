@@ -210,22 +210,42 @@ class Game {
         } 
 
       // increases the frequency of bug realease
-      if (this.gameView.gameTime.getElapsedTime() > 30){
-        this.bugReleaseInterval=0.45;
+      if (this.difficulty === 'easy'){
+        if (this.gameView.gameTime.getElapsedTime() > 30){
+          this.bugReleaseInterval=0.45;
+        }
+        if (this.gameView.gameTime.getElapsedTime() > 60){
+          this.bugReleaseInterval=0.40;
+        }
+        if (this.gameView.gameTime.getElapsedTime() > 90){
+          this.bugReleaseInterval=0.35;
+        }
+        if (this.gameView.gameTime.getElapsedTime() > 120){
+          this.bugReleaseInterval=0.30;
+        }
+        if (this.gameView.gameTime.getElapsedTime() > 180){
+          this.finished = true;
+          this.gameWon();
+        }
+      } else if (this.difficulty === 'hard'){
+        if (this.gameView.gameTime.getElapsedTime() > 30){
+          this.bugReleaseInterval=0.42;
+        }
+        if (this.gameView.gameTime.getElapsedTime() > 60){
+          this.bugReleaseInterval=0.37;
+        }
+        if (this.gameView.gameTime.getElapsedTime() > 90){
+          this.bugReleaseInterval=0.32;
+        }
+        if (this.gameView.gameTime.getElapsedTime() > 120){
+          this.bugReleaseInterval=0.25;
+        }
+        if (this.gameView.gameTime.getElapsedTime() > 180){
+          this.finished = true;
+          this.gameWon();
+        }
       }
-      if (this.gameView.gameTime.getElapsedTime() > 60){
-        this.bugReleaseInterval=0.40;
-      }
-      if (this.gameView.gameTime.getElapsedTime() > 90){
-        this.bugReleaseInterval=0.35;
-      }
-      if (this.gameView.gameTime.getElapsedTime() > 120){
-        this.bugReleaseInterval=0.30;
-      }
-      if (this.gameView.gameTime.getElapsedTime() > 180){
-        this.finished = true;
-        this.gameWon();
-      }
+
 
 
       if (this.col.gotItem && !(this.gameView.scene.fog.density < 0.011)) {
