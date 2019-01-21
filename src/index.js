@@ -26,13 +26,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     
     document.getElementById('splash').style.visibility = 'hidden';
-
     game = new Game();
     game.start();
-    
-   
-
   })
+
+  // document.getElementById('diff').addEventListener('click', () => {   
+  //   document.getElementById('diff').style.visibility = 'hidden'
+  //   document.getElementById('diff-settings').style.visibility = 'visible'
+  
+  // })
 
  
   
