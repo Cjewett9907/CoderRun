@@ -229,16 +229,13 @@ class Game {
         }
       } else if (this.difficulty === 'hard'){
         if (this.gameView.gameTime.getElapsedTime() > 30){
-          this.bugReleaseInterval=0.42;
+          this.bugReleaseInterval=0.40;
         }
         if (this.gameView.gameTime.getElapsedTime() > 60){
-          this.bugReleaseInterval=0.37;
+          this.bugReleaseInterval=0.35;
         }
         if (this.gameView.gameTime.getElapsedTime() > 90){
-          this.bugReleaseInterval=0.32;
-        }
-        if (this.gameView.gameTime.getElapsedTime() > 120){
-          this.bugReleaseInterval=0.25;
+          this.bugReleaseInterval=0.30;
         }
         if (this.gameView.gameTime.getElapsedTime() > 180){
           this.finished = true;
@@ -261,15 +258,19 @@ class Game {
         this.gameView.rollingSpeed += this.boostDiff * 2
         this.boostDiff = 0
       }
-      if (Math.floor(this.notHitTime.getElapsedTime()) % 5 === 0 && this.boostable === true && this.gameView.rollingSpeed < 0.015 && this.difficulty === 'easy' ){
-        this.boostable = false
-        this.gameView.rollingSpeed += 0.0003
-      } else if (Math.floor(this.notHitTime.getElapsedTime()) % 5 === 0 && this.boostable === true && this.gameView.rollingSpeed < 0.015 && this.difficulty === 'hard'){
-         this.boostable = false
-         this.gameView.rollingSpeed += 0.0004
-      }
-      else if (Math.floor(this.notHitTime.getElapsedTime()+1) % 5 === 0){
-        this.boostable = true
+
+      if (this.gameView.rollingSpeed < 0.06){
+
+        if (Math.floor(this.notHitTime.getElapsedTime()) % 5 === 0 && this.boostable === true && this.gameView.rollingSpeed < 0.015 && this.difficulty === 'easy' ){
+          this.boostable = false
+          this.gameView.rollingSpeed += 0.0003
+        } else if (Math.floor(this.notHitTime.getElapsedTime()) % 5 === 0 && this.boostable === true && this.gameView.rollingSpeed < 0.015 && this.difficulty === 'hard'){
+          this.boostable = false
+          this.gameView.rollingSpeed += 0.0003
+        }
+        else if (Math.floor(this.notHitTime.getElapsedTime()+1) % 5 === 0){
+          this.boostable = true
+        }
       }
 
       // The Awake mechanic Game Over check
