@@ -23,7 +23,6 @@ class Game {
 		this.pathAngleValues=[1.52,1.57,1.62];
 		this.jumping = false;
 		this.stats = 0;
-		// this.player = player;
 		this.finshed = false;
     this.paused = false;
     this.validMove = true;
@@ -143,21 +142,17 @@ class Game {
       this.canDoubleJump = true;
       this.jumpForce=(Math.random()*0.005)+0.012; 
     } 
-    // if 
-    // (!this.jumping || this.canDoubleJump) 
-        // (true){ 
+
         if ( this.keypress.jump && !this.jumping ) {//up, jump
           
           this.keypress.jump = false
           this.jumpForce = 0.2;
-          // this.gameView.heroSprite.position.y += this.jumpForce;
           this.jumping=true;
         }
 
         if (this.keypress.jump && this.jumping && this.canDoubleJump){
           this.keypress.jump = false
           this.jumpForce = 0.15;
-          // this.gameView.heroSprite.position.y += this.jumpForce;
           this.canDoubleJump = false
         }
 
@@ -222,7 +217,7 @@ class Game {
         if (this.gameView.gameTime.getElapsedTime() > 120){
           this.bugReleaseInterval=0.30;
         }
-        if (this.gameView.gameTime.getElapsedTime() > 180){
+        if (this.gameView.gameTime.getElapsedTime() > 175){
           this.finished = true;
           this.gameWon();
         }
@@ -236,7 +231,7 @@ class Game {
         if (this.gameView.gameTime.getElapsedTime() > 90){
           this.bugReleaseInterval=0.30;
         }
-        if (this.gameView.gameTime.getElapsedTime() > 180){
+        if (this.gameView.gameTime.getElapsedTime() > 175){
           this.finished = true;
           this.gameWon();
         }
@@ -274,7 +269,6 @@ class Game {
       // The Awake mechanic Game Over check
       if (this.gameView.scene.fog.density > 0.16){
         this.finished = true
-        // this.gameOver.bind(this);
         this.gameOver();
       }
     
