@@ -59,9 +59,8 @@ class Game {
     this.enemy.createBugsPool();
     this.gameView.render();
     this.playSounds();
-    debugger
-    console.log("difficulty is", this.difficulty)
-    console.log(this.difficulty === 'hard')
+    
+ 
 
     if (this.difficulty === 'hard') {
       this.gameView.rollingSpeed = 0.01
@@ -308,7 +307,7 @@ class Game {
       if (!this.finished){
         requestAnimationFrame(this.update.bind(this));
       }
-    }
+  }
   
     clearGame() {
       clearInterval(this.start());

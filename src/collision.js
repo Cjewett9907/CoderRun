@@ -24,13 +24,10 @@ class Collision {
             
 
             enemy.items.itemPool.forEach( function ( element, index ) {
-                // console.log("bugs in path", enemy.bugsInPath)
+              
                 oneItem = enemy.items.itemPool[ index ];
-                if (oneItem) {
-                    // console.log("IN THE LENGTH CHECKER ")        
+                if (oneItem) {      
                     itemPos.setFromMatrixPosition( oneItem.matrixWorld );
-                    // console.log("one Item:", oneItem)
-                    // console.log("item pos AFTER", itemPos)
                     if(itemPos.z>20 &&oneItem.visible){//gone out of our view zone
                         itemsToRemove.push(oneItem);
                     }else {
@@ -38,8 +35,6 @@ class Collision {
                         
 
                         collisionObject.gotItem = true
-                        // effectObject.addCoffee(gameView);
-                        // effectObject.doCoffeeLogic(gameView);
                     
                         }
                     }
@@ -91,7 +86,6 @@ class Collision {
                 enemy.bugsInPath.splice(fromWhere,1);
                 enemy.bugPool.push(oneBug);
                 oneBug.visible=false;
-                console.log("Bug REMOVED");
             });
 
             itemsToRemove.forEach( function ( element, index ) {
@@ -99,7 +93,6 @@ class Collision {
                 fromWhere=enemy.items.itemPool.indexOf(oneItem);
                 enemy.items.itemPool.splice(fromWhere,1);
                 oneItem.visible=false;
-                console.log("item REMOVED");
             });
         }
 
