@@ -1,4 +1,3 @@
-
 const t = require('three');
 const GameView = require('./game_view');
 const Collision = require('./collision');
@@ -7,7 +6,6 @@ const Enemy = require('./enemy');
 const Effects = require('./special_effects');
 const Item = require('./items');
 const Sound = require('./sounds');
-
 
 class Game {
 
@@ -119,7 +117,6 @@ class Game {
 
 	update(){
     document.getElementById('score').innerHTML = `${this.score} PTS`;
-
     this.gameView.heroSprite.position.y += this.jumpForce;
     this.jumpForce-=this.gravity; 
 
@@ -206,6 +203,7 @@ class Game {
           this.finished = true;
           this.gameWon();
         }
+        
       } else if (this.difficulty === 'hard'){
         if (this.gameView.gameTime.getElapsedTime() > 30){
           this.bugReleaseInterval=0.40;
