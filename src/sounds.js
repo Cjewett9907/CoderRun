@@ -14,7 +14,7 @@ class Sound {
         this.sound.play();
       }
     }
-  
+     
     stop() {
       this.sound.pause();
     }

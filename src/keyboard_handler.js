@@ -24,7 +24,3 @@ export const onKeyDown = function (event, keypress) {
         break;
     }
   };
-
-export const onKeyUp = function (event) {
-
-  };

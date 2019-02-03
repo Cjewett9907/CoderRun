@@ -1,14 +1,11 @@
 const Game = require("./game");
 const GameView = require("./game_view");
-// const Background = require("./background");
 
 document.addEventListener("DOMContentLoaded", () => {
   const gameEl = document.getElementsByClassName("Main-Game");
 
   let difficulty = 'easy'
   let game;
-  // const bg = new Background()
-  // const splashBackground = setInterval(bg.draw, 40);
   document.getElementById('play_text').innerHTML = 'PLAY'
   document.getElementById('title_text').innerHTML = 'CODER RUN'
   document.getElementById('instructions_text').addEventListener('click', () => {
@@ -53,7 +50,4 @@ document.addEventListener("DOMContentLoaded", () => {
    difficulty = 'hard' 
   })
 
-
- 
-  
 });

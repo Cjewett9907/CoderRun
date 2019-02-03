@@ -108,7 +108,6 @@ class Game {
 
   playSounds() {
     this.handleMusic();
-    
   }
 
   handleMusic() {
@@ -128,9 +127,6 @@ class Game {
     }, false);
   }
 
-
-
-
 	update(){
     document.getElementById('score').innerHTML = `${this.score} PTS`;
 
@@ -143,8 +139,7 @@ class Game {
       this.jumpForce=(Math.random()*0.005)+0.012; 
     } 
 
-        if ( this.keypress.jump && !this.jumping ) {//up, jump
-          
+        if ( this.keypress.jump && !this.jumping ) {//up, jump  
           this.keypress.jump = false
           this.jumpForce = 0.2;
           this.jumping=true;
@@ -237,8 +232,6 @@ class Game {
         }
       }
 
-
-
       if (this.col.gotItem && !(this.gameView.scene.fog.density < 0.011)) {
         this.col.gotItem = false
         this.gameView.scene.fog.density -= 0.01
@@ -246,8 +239,6 @@ class Game {
 
       if (this.col.mercy && (this.notHitTime.getElapsedTime() > 5)) {
         this.col.mercy = false
-        // this.col.hasCollided = false
-
         this.gameView.rollingSpeed += this.boostDiff * 2
         this.boostDiff = 0
       }
