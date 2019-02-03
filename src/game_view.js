@@ -1,23 +1,17 @@
 const t = require('three');
-const Enemy = require('./enemy');
 const TextureAnimator = require('./texture_animator');
-const Collision = require('./collision');
 
 class GameView {
   constructor(game) {
     this.clock = new t.Clock();
     this.gameTime = new t.Clock();
-    
     this.renderer = new t.WebGLRenderer({alpha:true});
     this.sceneWidth = window.innerWidth;
 		this.sceneHeight = window.innerHeight;
 		this.scene = new t.Scene();
     this.scene.fog = new t.FogExp2( 0x000000, .02 );
-    
     this.heroGroundedY = -1.5; 
     this.skyGeometry = new t.CylinderGeometry( 35,35,250,32);
-    
-    
 		this.skyMaterial = new t.MeshBasicMaterial ( { map: new t.TextureLoader().load('./matrix_green2.png') } )		
 		this.rollingSkyCylinder = new t.Mesh( this.skyGeometry, this.skyMaterial );
 		this.sides = 80;
