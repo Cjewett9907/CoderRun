@@ -10,9 +10,7 @@ class Enemy{
         this.spawnTimer = new t.Clock().start();
     }
 
-
   addWorldBugs(ground){
- 
     this.currentGround = ground
     const numBugs=36;
     const gap=6.28/36;
@@ -39,20 +37,17 @@ class Enemy{
         sphericalHelper.set( worldRadius+1, pathAngleValues[row], -this.currentGround.rotation.x+4 );
         }else {
         //// This is for Flying Bugs
-        
         sphericalHelper.set( worldRadius+2, pathAngleValues[row], -this.currentGround.rotation.x+4 );
         }
       }else {
         this.newBug = this.createBug();
         let swarmAreaAngle=0;
       
-    
           if(isLeft){
             swarmAreaAngle=1.68+Math.random()*0.1;
           }else{
             swarmAreaAngle=1.46-Math.random()*0.1;
           }
-
           sphericalHelper.set( worldRadius+1, swarmAreaAngle, row );
         }
 
@@ -62,9 +57,7 @@ class Enemy{
     this.newBug.quaternion.setFromUnitVectors(bugVector, this.groundVector);
     this.newBug.rotation.x += (Math.random() * (2*Math.PI/10))+-Math.PI/10;
     this.currentGround.add(this.newBug);
-
   }
-
 
   addPathBug(ground, difficulty){
     this.currentGround = ground
@@ -80,7 +73,6 @@ class Enemy{
       this.items.createItem();
     }
     else{
-      
       if(this.spawnTimer > 15){
       this.addBug(true, 0, false, ground, this.bugPool);
       options.splice(0,1);
@@ -97,8 +89,6 @@ class Enemy{
         this.addBug(true, lane1, false, ground, this.bugPool);
         let lane2= Math.floor(Math.random()*3);
         this.addBug(true, lane2, false, ground, this.bugPool);
-        // let lane3= Math.floor(Math.random()*3);
-        // this.addBug(true, lane3, false, ground, this.bugPool);
       }
       if(Math.random()>0.5){
         // Add difficulty here!
@@ -108,20 +98,16 @@ class Enemy{
         this.addBug(true, lane5, false, ground, this.bugPool);
         let lane6= Math.floor(Math.random()*3);
         this.addBug(true, lane6, false, ground, this.bugPool);
-        // let lane7= Math.floor(Math.random()*3);
-        // this.addBug(true, lane7, false, ground, this.bugPool);
-      }
 
+      }
     }
   }
 
   createBug(){
     let midPointVector= new t.Vector3();
     let vertexVector= new t.Vector3();
-
     this.bugMap = new t.TextureLoader().load( "./red_spider.png");
     this.spriteMaterial = new t.SpriteMaterial( { map: this.bugMap, color: 0xffffff } );
-
     let bug = new t.Sprite( this.spriteMaterial );
     bug.scale.set(1, 1, 1)
     bug.receiveShadow=false;

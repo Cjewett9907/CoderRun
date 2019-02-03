@@ -6,11 +6,7 @@ class Collision {
 		this.bugsInPath = [];
         this.hasCollided = false;
         this.gotItem = false
-
     }
-
-
-
         doBugLogic(gameView, enemy, effectObject, collisionObject, item, difficulty){
              
             let oneBug;
@@ -20,60 +16,43 @@ class Collision {
             const bugsToRemove = [];
             const itemsToRemove = [];
             
-
             enemy.items.itemPool.forEach( function ( element, index ) {
               
                 oneItem = enemy.items.itemPool[ index ];
                 if (oneItem) {      
                     itemPos.setFromMatrixPosition( oneItem.matrixWorld );
-                    if(itemPos.z>20 &&oneItem.visible){//gone out of our view zone
+                    if(itemPos.z>20 &&oneItem.visible){
+                        //Out of view, remove it
                         itemsToRemove.push(oneItem);
                     }else {
                         if(itemPos.distanceTo(gameView.heroSprite.position)<=0.5){
-                        
-
                         collisionObject.gotItem = true
-                    
                         }
                     }
                 }
             });
         
-
-
-
-
-
-
             enemy.bugsInPath.forEach( function ( element, index ) {
-            
                 oneBug=enemy.bugsInPath[ index ];
-             
                 bugPos.setFromMatrixPosition( oneBug.matrixWorld );
     
-                if(bugPos.z>20 &&oneBug.visible){//gone out of our view zone
+                if(bugPos.z>20 &&oneBug.visible){
+                    //Out of view, remove it
                     bugsToRemove.push(oneBug);
                 }else if(difficulty === 'hard') {
                     if(bugPos.distanceTo(gameView.heroSprite.position)<=0.6){
-                        
-
                         collisionObject.hasCollided = true
                         effectObject.addHit(gameView);
                         effectObject.doHitLogic(gameView);
-                        
                     }
-
                 }
-                else{//check collision
+                else{
+                    //collision check
                     if(bugPos.distanceTo(gameView.heroSprite.position)<=0.5){
-                        
-
                         collisionObject.hasCollided = true
                         effectObject.addHit(gameView);
                         effectObject.doHitLogic(gameView);
-                        
                     }
-
                 }
             });
 
