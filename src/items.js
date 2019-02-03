@@ -7,13 +7,11 @@ class Item {
         this.newItem = []
         this.itemMap = null;
 
-
     }
     addItem(row, ground){
         const sphericalHelper = new t.Spherical();
         const worldRadius = 26;
         const pathAngleValues = [1.52,1.57,1.62]
-     
         this.newItem = this.createItem();
         this.newItem.visible = true;
             

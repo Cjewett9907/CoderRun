@@ -18,42 +18,30 @@ class GameView {
     this.skyGeometry = new t.CylinderGeometry( 35,35,250,32);
     
     
-		this.skyMaterial = new t.MeshBasicMaterial ( { 
-      // color: 0x0CDBEE
-      map: new t.TextureLoader().load('./matrix_green2.png')
-    } )		
+		this.skyMaterial = new t.MeshBasicMaterial ( { map: new t.TextureLoader().load('./matrix_green2.png') } )		
 		this.rollingSkyCylinder = new t.Mesh( this.skyGeometry, this.skyMaterial );
 		this.sides = 80;
 		this.tiers = 80;
 		this.worldRadius = 26;
 		this.sphereGeometry = new t.SphereGeometry( this.worldRadius, this.sides, this.tiers);	
 		this.sphereMaterial = new t.MeshBasicMaterial ( { 
-      // color: 0x04FA38
        map: new t.TextureLoader().load('./matrix_green2.png')
       } )
     this.rollingGroundSphere = new t.Mesh( this.sphereGeometry, this.sphereMaterial );
     this.rollingSpeed = 0.008; 
     
 		this.spriteMap = new t.TextureLoader().load( "./run_2_red.png" );
-	  this.spriteMaterial = new t.SpriteMaterial( { 
-      map: this.spriteMap, 
-      color: 0xffffff } );
+	  this.spriteMaterial = new t.SpriteMaterial( { map: this.spriteMap, color: 0xffffff } );
     this.annie = new TextureAnimator( this.spriteMap, 2, 1, 2, 160 );
   	this.heroSprite = new t.Sprite( this.spriteMaterial );	
     this.heroGroundedY = -1.5; 
     
     this.sphericalHelper = new t.Spherical();
     this.pathAngleValues=[1.52,1.57,1.62];
-    
-
     this.leftLane = -1;
 		this.rightLane = 1;
     this.middleLane = 0;  
     this.currentLane = this.middleLane;
-    
-		
-
-
     this.bugPool =[];
     this.game = game;
   }
@@ -61,36 +49,27 @@ class GameView {
     createScene(effects){
       this.clock.start();
       this.gameTime.start();
-      
       this.renderer.setClearColor(0xfffafa, 1); 
       this.renderer.shadowMap.enabled = true;//enable shadow
       this.renderer.shadowMap.type = t.PCFSoftShadowMap;
       this.renderer.setSize( this.sceneWidth, this.sceneHeight );
       this.dom = document.getElementById('Main-Game');
-      
       this.dom.appendChild(this.renderer.domElement);
       this.addWorld();
       this.addHero();
       this.addSky();
-
-      
-
       this.camera = new t.PerspectiveCamera( 90, this.sceneWidth / this.sceneHeight, .1, 100);
       this.camera.position.z = 20;
       this.camera.position.y = 2;
       this.camera.position.x = 0;
       this.renderer.render(this.scene, this.camera);//draw
-      
       window.addEventListener('resize', this.onWindowResize.bind(this), false);//resize callback
   
     }
 
-
-
     addHero(){			
 			this.heroSprite.scale.set(2, 2, 1)
 			this.scene.add( this.heroSprite );
-			
 			this.heroSprite.position.y= this.heroGroundedY
 			this.heroSprite.position.z= 16;
 			this.currentLane=this.middleLane;

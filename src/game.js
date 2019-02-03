@@ -115,7 +115,6 @@ class Game {
     // this.soundOn = true; 
     this.music.start(this);
 
-
     document.getElementById('Main-Game').addEventListener('click', () => {
       if (this.soundOn) {
         this.soundOn = false;
