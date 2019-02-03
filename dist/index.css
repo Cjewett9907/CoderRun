@@ -35,7 +35,6 @@ body {
   padding: 10 10;
   border: 1px solid #136103;
   border-radius: 20px;
-  /* z-index: 500; */
 }
 
 #splash h1 {
@@ -70,10 +69,8 @@ body {
   font-family: 'Orbitron', sans-serif;
   font-weight: lighter;
   font-size: 30px;
-  
   color: #136103;
   text-align: center;
-  /* padding-bottom: 45px; */
 }
 
 #play_btn {
@@ -82,7 +79,6 @@ body {
   font-weight: lighter;
   font-size: 30px;
   background-color: rgba(255, 255, 255, 0.2);
-  /* height: 70px; */
   display: flex;
   padding: 1%;
   justify-content: center;
@@ -147,7 +143,6 @@ body {
   background-repeat: no-repeat;
   border-radius: 10px;
   text-align: right;
-  /* visibility: hidden; */
 }
 
 .diff-settings{
@@ -205,5 +200,3 @@ body {
 #box h2{
   font-size: 24px;
 }
-
-/* we also want a lightning sound */
