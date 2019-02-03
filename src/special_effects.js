@@ -30,7 +30,7 @@ class Effects {
         }
         this.particleGeometry.verticesNeedUpdate = true;
         gameView.scene.add( this.particles );
-        // this.particles.visible=false;        
+       
     }
 
     addHit(gameView){
@@ -47,6 +47,7 @@ class Effects {
         this.hitPower=1.1;
         this.particles.visible=true;
     }
+    
     // doCoffeeLogic(gameView){
     //     if(!this.coffeeParticles.visible)return;
     //     for (let i = 0; i < this.particleCount; i ++ ) {

@@ -6,8 +6,8 @@ class Item {
         this.itemPool = []
         this.newItem = []
         this.itemMap = null;
-
     }
+
     addItem(row, ground){
         const sphericalHelper = new t.Spherical();
         const worldRadius = 26;

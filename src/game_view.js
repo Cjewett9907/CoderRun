@@ -24,18 +24,14 @@ class GameView {
 		this.tiers = 80;
 		this.worldRadius = 26;
 		this.sphereGeometry = new t.SphereGeometry( this.worldRadius, this.sides, this.tiers);	
-		this.sphereMaterial = new t.MeshBasicMaterial ( { 
-       map: new t.TextureLoader().load('./matrix_green2.png')
-      } )
+		this.sphereMaterial = new t.MeshBasicMaterial ( { map: new t.TextureLoader().load('./matrix_green2.png') } )
     this.rollingGroundSphere = new t.Mesh( this.sphereGeometry, this.sphereMaterial );
     this.rollingSpeed = 0.008; 
-    
 		this.spriteMap = new t.TextureLoader().load( "./run_2_red.png" );
 	  this.spriteMaterial = new t.SpriteMaterial( { map: this.spriteMap, color: 0xffffff } );
     this.annie = new TextureAnimator( this.spriteMap, 2, 1, 2, 160 );
   	this.heroSprite = new t.Sprite( this.spriteMaterial );	
     this.heroGroundedY = -1.5; 
-    
     this.sphericalHelper = new t.Spherical();
     this.pathAngleValues=[1.52,1.57,1.62];
     this.leftLane = -1;
@@ -101,7 +97,6 @@ class GameView {
   }
 
   onWindowResize(){
-    //resize & align
 		this.sceneHeight = window.innerHeight;
 		this.sceneWidth = window.innerWidth;
 		this.renderer.setSize(this.sceneWidth, this.sceneHeight);

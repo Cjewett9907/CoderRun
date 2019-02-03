@@ -14,7 +14,6 @@ class Game {
 	constructor(difficulty){
 
     this.difficulty = difficulty
-
 		this.jumpForce = 0 
 		this.gravity = 0.012; 
 		this.score = 0;    
@@ -29,7 +28,6 @@ class Game {
     this.gameView = new GameView();
     this.keypress = { jump: false, left: false, right: false, attack: false }
     this.col = new Collision();
-   
     this.bugReleaseInterval=0.5;
 		this.lastBugReleaseTime=0;
     this.enemy = new Enemy();
@@ -44,8 +42,6 @@ class Game {
     this.boostDiff = 0
 
 	}
-
-
   
   start(){
     
@@ -58,8 +54,6 @@ class Game {
     this.enemy.createBugsPool();
     this.gameView.render();
     this.playSounds();
-    
- 
 
     if (this.difficulty === 'hard') {
       this.gameView.rollingSpeed = 0.01
@@ -89,13 +83,11 @@ class Game {
     document.getElementById('instructions_text').innerHTML = 'HEAR THE STORY AGAIN?';
     document.getElementById('play_text').innerHTML = 'Play Again?';  
     document.getElementById('play_btn').addEventListener('click', () => {
-      window.location.reload()
-      this.clearGame();
+    window.location.reload()
+    this.clearGame();
       
     })
   }
-
-
   
   isMusicPlaying() {
     if (this.soundOn) {
@@ -104,7 +96,6 @@ class Game {
       return 'off';
     }
   }
-
 
   playSounds() {
     this.handleMusic();

@@ -1,9 +1,7 @@
 const Game = require("./game");
-const GameView = require("./game_view");
 
 document.addEventListener("DOMContentLoaded", () => {
   const gameEl = document.getElementsByClassName("Main-Game");
-
   let difficulty = 'easy'
   let game;
   document.getElementById('play_text').innerHTML = 'PLAY'
