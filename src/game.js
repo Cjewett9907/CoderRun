@@ -1,9 +1,9 @@
-// const BugManager = require('./bug_manager')
+
 const t = require('three');
 const GameView = require('./game_view');
 const Collision = require('./collision');
 const keyboardHandler = require('./keyboard_handler');
-const Enemy2 = require('./enemy2');
+const Enemy = require('./enemy');
 const Effects = require('./special_effects');
 const Item = require('./items');
 const Sound = require('./sounds');
@@ -32,7 +32,7 @@ class Game {
    
     this.bugReleaseInterval=0.5;
 		this.lastBugReleaseTime=0;
-    this.enemy = new Enemy2();
+    this.enemy = new Enemy();
     this.effects = new Effects();
     this.item = new Item();
     this.doubleJump = 2;

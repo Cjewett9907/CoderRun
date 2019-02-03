@@ -1,11 +1,9 @@
 const t = require('three')
 const Effects = require('./special_effects')
-// const Game = require('./game')
 
 class Collision {
     constructor(){
 		this.bugsInPath = [];
-        // this.bugsToRemove = [];
         this.hasCollided = false;
         this.gotItem = false
 
@@ -95,11 +93,6 @@ class Collision {
                 oneItem.visible=false;
             });
         }
-
-  
-
-       
-
 }
 
 module.exports = Collision;

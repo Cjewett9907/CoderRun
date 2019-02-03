@@ -1,5 +1,5 @@
 const t = require('three');
-const Enemy = require('./enemy2');
+const Enemy = require('./enemy');
 const TextureAnimator = require('./texture_animator');
 const Collision = require('./collision');
 
@@ -55,7 +55,6 @@ class GameView {
 
 
     this.bugPool =[];
-    // this.enemy = new Enemy();
     this.game = game;
   }
 
@@ -70,8 +69,6 @@ class GameView {
       this.dom = document.getElementById('Main-Game');
       
       this.dom.appendChild(this.renderer.domElement);
-      //this.stats = new Stats();
-      //this.dom.appendChild(this.stats.dom);
       this.addWorld();
       this.addHero();
       this.addSky();
@@ -107,22 +104,17 @@ class GameView {
 		this.rollingGroundSphere.rotation.z = -Math.PI/2;
 		this.scene.add( this.rollingGroundSphere );
 		this.rollingGroundSphere.position.y = -24;
-    this.rollingGroundSphere.position.z = 2;
-    // const enemy = new Enemy();
-    // Enemy.addWorldBugs(this.rollingGroundSphere);
-    
+    this.rollingGroundSphere.position.z = 2;    
 	}
 	
 	addSky(){
 		this.rollingSkyCylinder.rotation.z = 0.5 * Math.PI;
-		// rollingSkyCylinder.flipSided = true;
 		this.rollingSkyCylinder.receiveShadow = true;
 		this.rollingSkyCylinder.castShadow = false;
 		this.skyGeometry.scale( 1, -1, 1 );
 		this.scene.add( this.rollingSkyCylinder );
 		this.rollingSkyCylinder.position.y = -24;
 		this.rollingSkyCylinder.position.z = 2;
-		// rollingSkyCylinder.rotation.z=-Math.PI/2;
 	}
 
   render(){
@@ -130,9 +122,6 @@ class GameView {
   }
 
   onWindowResize(){
-
-    // this.renderer.bind(this)
-
     //resize & align
 		this.sceneHeight = window.innerHeight;
 		this.sceneWidth = window.innerWidth;
