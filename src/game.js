@@ -112,7 +112,7 @@ class Game {
 
   handleMusic() {
     this.music = new Sound('./spider_dance.mp3');
-    this.soundOn = true; 
+    // this.soundOn = true; 
     this.music.start(this);
 
 
