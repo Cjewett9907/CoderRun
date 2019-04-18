@@ -143,6 +143,7 @@ body {
   background-repeat: no-repeat;
   border-radius: 10px;
   text-align: right;
+  border: 2px solid black;
 }
 
 .diff-settings{
@@ -160,6 +161,7 @@ body {
   background-repeat: no-repeat;
   border-radius: 10px;
   text-align: right;
+  border: 2px solid black;
   visibility: hidden;
 }
 
